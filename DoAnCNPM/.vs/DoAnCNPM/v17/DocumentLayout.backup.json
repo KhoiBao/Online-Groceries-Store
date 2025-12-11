@@ -1,0 +1,142 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\c#\\DoAnCNPM\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{D9224592-ACFF-4B8E-8247-2018EA4A04B0}|DoAnCNPM.csproj|d:\\c#\\doancnpm\\views\\home\\sanpham.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{D9224592-ACFF-4B8E-8247-2018EA4A04B0}|DoAnCNPM.csproj|solutionrelative:views\\home\\sanpham.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D9224592-ACFF-4B8E-8247-2018EA4A04B0}|DoAnCNPM.csproj|D:\\c#\\DoAnCNPM\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D9224592-ACFF-4B8E-8247-2018EA4A04B0}|DoAnCNPM.csproj|solutionrelative:controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D9224592-ACFF-4B8E-8247-2018EA4A04B0}|DoAnCNPM.csproj|d:\\c#\\doancnpm\\models\\loaisanpham.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D9224592-ACFF-4B8E-8247-2018EA4A04B0}|DoAnCNPM.csproj|solutionrelative:models\\loaisanpham.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D9224592-ACFF-4B8E-8247-2018EA4A04B0}|DoAnCNPM.csproj|d:\\c#\\doancnpm\\models\\sanpham.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D9224592-ACFF-4B8E-8247-2018EA4A04B0}|DoAnCNPM.csproj|solutionrelative:models\\sanpham.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D9224592-ACFF-4B8E-8247-2018EA4A04B0}|DoAnCNPM.csproj|d:\\c#\\doancnpm\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{D9224592-ACFF-4B8E-8247-2018EA4A04B0}|DoAnCNPM.csproj|solutionrelative:views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D9224592-ACFF-4B8E-8247-2018EA4A04B0}|DoAnCNPM.csproj|D:\\c#\\DoAnCNPM\\views\\shared\\_layoutpage1.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{D9224592-ACFF-4B8E-8247-2018EA4A04B0}|DoAnCNPM.csproj|solutionrelative:views\\shared\\_layoutpage1.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D9224592-ACFF-4B8E-8247-2018EA4A04B0}|DoAnCNPM.csproj|d:\\c#\\doancnpm\\models\\model1.edmx||{C99AEA30-8E36-4515-B76F-496F5A48A6AA}|",
+      "RelativeMoniker": "D:0:0:{D9224592-ACFF-4B8E-8247-2018EA4A04B0}|DoAnCNPM.csproj|solutionrelative:models\\model1.edmx||{C99AEA30-8E36-4515-B76F-496F5A48A6AA}|"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 300,
+          "SelectedChildIndex": 3,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "LOAISANPHAM.cs",
+              "DocumentMoniker": "D:\\c#\\DoAnCNPM\\Models\\LOAISANPHAM.cs",
+              "RelativeDocumentMoniker": "Models\\LOAISANPHAM.cs",
+              "ToolTip": "D:\\c#\\DoAnCNPM\\Models\\LOAISANPHAM.cs",
+              "RelativeToolTip": "Models\\LOAISANPHAM.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-11T15:11:02.928Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "SANPHAM.cs",
+              "DocumentMoniker": "D:\\c#\\DoAnCNPM\\Models\\SANPHAM.cs",
+              "RelativeDocumentMoniker": "Models\\SANPHAM.cs",
+              "ToolTip": "D:\\c#\\DoAnCNPM\\Models\\SANPHAM.cs",
+              "RelativeToolTip": "Models\\SANPHAM.cs",
+              "ViewState": "AgIAABgAAAAAAAAAAAAQwC0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-11T15:10:46.408Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "SanPham.cshtml",
+              "DocumentMoniker": "D:\\c#\\DoAnCNPM\\Views\\Home\\SanPham.cshtml",
+              "RelativeDocumentMoniker": "Views\\Home\\SanPham.cshtml",
+              "ToolTip": "D:\\c#\\DoAnCNPM\\Views\\Home\\SanPham.cshtml",
+              "RelativeToolTip": "Views\\Home\\SanPham.cshtml",
+              "ViewState": "AgIAADIAAAAAAAAAAAAmwEUAAAA7AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-12-11T15:00:41.513Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "D:\\c#\\DoAnCNPM\\Views\\Home\\Index.cshtml",
+              "RelativeDocumentMoniker": "Views\\Home\\Index.cshtml",
+              "ToolTip": "D:\\c#\\DoAnCNPM\\Views\\Home\\Index.cshtml",
+              "RelativeToolTip": "Views\\Home\\Index.cshtml",
+              "ViewState": "AgIAANMAAAAAAAAAAAASwPIAAAAmAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-12-11T13:45:36.938Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "HomeController.cs",
+              "DocumentMoniker": "D:\\c#\\DoAnCNPM\\Controllers\\HomeController.cs",
+              "RelativeDocumentMoniker": "Controllers\\HomeController.cs",
+              "ToolTip": "D:\\c#\\DoAnCNPM\\Controllers\\HomeController.cs",
+              "RelativeToolTip": "Controllers\\HomeController.cs",
+              "ViewState": "AgIAABIAAAAAAAAAAAAswB4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-11T13:45:15.698Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Model1.edmx [Diagram1]",
+              "DocumentMoniker": "D:\\c#\\DoAnCNPM\\Models\\Model1.edmx",
+              "RelativeDocumentMoniker": "Models\\Model1.edmx",
+              "ToolTip": "D:\\c#\\DoAnCNPM\\Models\\Model1.edmx [Diagram1]",
+              "RelativeToolTip": "Models\\Model1.edmx [Diagram1]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001116|",
+              "WhenOpened": "2025-12-11T14:54:15.462Z",
+              "EditorCaption": " [Diagram1]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "_LayoutPage1.cshtml",
+              "DocumentMoniker": "D:\\c#\\DoAnCNPM\\Views\\Shared\\_LayoutPage1.cshtml",
+              "RelativeDocumentMoniker": "Views\\Shared\\_LayoutPage1.cshtml",
+              "ToolTip": "D:\\c#\\DoAnCNPM\\Views\\Shared\\_LayoutPage1.cshtml",
+              "RelativeToolTip": "Views\\Shared\\_LayoutPage1.cshtml",
+              "ViewState": "AgIAAKEAAAAAAAAAAAAAALAAAAAWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-12-11T13:44:16.039Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

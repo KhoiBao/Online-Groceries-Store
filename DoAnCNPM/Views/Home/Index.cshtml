@@ -1,0 +1,262 @@
+﻿@using DoAnCNPM.Models;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+
+
+@{
+    ViewBag.Title = "Trang chủ";
+}
+
+<style>
+    .banner img {
+        width: 100%;
+        border-radius: 8px;
+    }
+
+    .categories {
+        display: flex;
+        justify-content: center;
+        gap: 25px;
+        margin: 25px 0;
+    }
+
+    .category-item {
+        text-align: center;
+    }
+
+        .category-item img {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #0e4f1f;
+        }
+
+    .section-title {
+        background: #0e4f1f;
+        color: white;
+        padding: 8px 15px;
+        font-size: 18px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 40px;
+        border-radius: 4px;
+    }
+
+    .products {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 25px;
+        margin-top: 20px;
+    }
+
+    .product-item img {
+        width: 100%;
+        height: 180px;
+        object-fit: cover;
+        border-radius: 6px;
+    }
+
+    .product-item .name {
+        margin-top: 8px;
+        font-weight: bold;
+    }
+
+    .product-item .price {
+        color: red;
+    }
+
+    .block {
+        height: 50px;
+        background: #0e4f1f;
+        margin-top: 20px;
+        border-radius: 4px;
+        display: flex;
+        align-items: center;
+        padding-left: 15px;
+        color: white;
+        justify-content: space-between;
+    }
+
+    /* Chia sẻ bí quyết */
+    .tips-section {
+        margin-top: 50px;
+    }
+
+    .tips-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 25px;
+        margin-top: 20px;
+    }
+
+    .tips-item img {
+        width: 100%;
+        border-radius: 10px;
+    }
+
+    .tips-item .box {
+        background: #d9f8d0;
+        padding: 25px;
+        border-radius: 10px;
+    }
+</style>
+
+<!-- ==================== BANNER ==================== -->
+<div class="banner">
+    <img src="~/Images/bannerv2.png" />
+</div>
+
+<!-- ==================== DANH MỤC ==================== -->
+<div class="categories">
+
+    <div class="category-item">
+        <img src="~/Images/raucu.png" />
+        <div>rau củ</div>
+    </div>
+
+    <div class="category-item">
+        <img src="~/Images/thitca.png" />
+        <div>thịt cá</div>
+    </div>
+
+    <div class="category-item">
+        <img src="~/Images/hoaqua.png" />
+        <div>trái cây</div>
+    </div>
+
+    <div class="category-item">
+        <img src="~/Images/thucphamkho.png" />
+        <div>thực phẩm khô</div>
+    </div>
+
+    <div class="category-item">
+        <img src="~/Images/douong.png" />
+        <div>Sữa </div>
+    </div>
+
+    <div class="category-item">
+        <img src="~/Images/dacsanvungmien.png" />
+        <div>Bánh kẹo & snack</div>
+    </div>
+
+    <div class="category-item">
+        <img src="~/Images/sanphamkhac.png" />
+        <div>Khác</div>
+    </div>
+
+</div>
+
+<!-- ==================== THỊT CÁ HẢI SẢN ==================== -->
+<div class="section-title">
+    <span>thịt, cá, hải sản</span>
+    <a href="#" style="color:white;">xem tất cả ></a>
+</div>
+
+<div class="products">
+
+    <div class="product-item">
+        <img src="~/Images/cathu.png" />
+        <div class="name">cá thu</div>
+        <div class="price">120.000đ</div>
+    </div>
+
+    <div class="product-item">
+        <img src="~/Images/basa.png" />
+        <div class="name">cá basa</div>
+        <div class="price">98.000đ</div>
+    </div>
+
+    <div class="product-item">
+        <img src="~/Images/cahoi.png" />
+        <div class="name">cá hồi</div>
+        <div class="price">230.000đ</div>
+    </div>
+    
+    <div class="product-item">
+        <img src="~/Images/cangu.png" />
+        <div class="name">cá ngừ</div>
+        <div class="price">155.000đ</div>
+    </div>
+
+</div>
+
+<!-- ==================== RAU CỦ ==================== -->
+<div class="section-title">
+    <span>rau củ</span>
+    <a href="#" style="color:white;">xem tất cả ></a>
+</div>
+
+<div class="products">
+
+    <div class="product-item">
+        <img src="~/Images/cachua.png" />
+        <div class="name">cà chua</div>
+        <div class="price">20.000đ</div>
+    </div>
+
+    <div class="product-item">
+        <img src="~/Images/dualeo.png" />
+        <div class="name">dưa leo</div>
+        <div class="price">15.000đ</div>
+    </div>
+
+    <div class="product-item">
+        <img src="~/Images/bingo.png" />
+        <div class="name">bí ngô</div>
+        <div class="price">18.000đ</div>
+    </div>
+
+    <div class="product-item">
+        <img src="~/Images/muop.png" />
+        <div class="name">mướp</div>
+        <div class="price">16.000đ</div>
+    </div>
+
+</div>
+
+<!-- ==================== TRÁI CÂY ==================== -->
+<div class="section-title">
+    <span>trái cây</span>
+    <a href="#" style="color:white;">xem tất cả ></a>
+</div>
+
+<div class="products">
+
+    <div class="product-item">
+        <img src="~/Images/oi.png" />
+        <div class="name">ổi</div>
+        <div class="price">25.000đ</div>
+    </div>
+
+    <div class="product-item">
+        <img src="~/Images/sầu riêng.png" />
+        <div class="name">sầu riêng</div>
+        <div class="price">30.000đ</div>
+    </div>
+
+    <div class="product-item">
+        <img src="~/Images/cam.png" />
+        <div class="name">cam</div>
+        <div class="price">35.000đ</div>
+    </div>
+
+    <div class="product-item">
+        <img src="~/Images/buoi.png" />
+        <div class="name">bưởi</div>
+        <div class="price">40.000đ</div>
+    </div>
+
+</div>
+
+<!-- ==================== BLOCK DANH MỤC KHÁC ==================== -->
+
+<div class="block">Bánh kẹo & snack <a href="#" style="color:white; margin-right:15px;">xem tất cả ></a></div>
+<div class="block">Thực phẩm khô <a href="#" style="color:white; margin-right:15px;">xem tất cả ></a></div>
+<div class="block">Đồ uống, bơ sữa <a href="#" style="color:white; margin-right:15px;">xem tất cả ></a></div>
+<div class="block">Sản phẩm khác <a href="#" style="color:white; margin-right:15px;">xem tất cả ></a></div>
+
