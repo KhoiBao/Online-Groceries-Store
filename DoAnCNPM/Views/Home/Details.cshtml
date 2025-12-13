@@ -1,0 +1,134 @@
+﻿@using DoAnCNPM.Models
+@model DoAnCNPM.Models.SANPHAM 
+
+@{
+    ViewBag.Title = "Chi tiết sản phẩm: " + Model.TENSP;
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+<style>
+    /* CSS cho trang chi tiết */
+    .product-detail-container {
+        display: flex;
+        gap: 30px;
+        padding: 40px;
+        background: #fff;
+        margin: 20px auto;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        max-width: 1200px;
+    }
+
+    .detail-image {
+        flex: 1;
+        max-width: 400px;
+        text-align: center;
+    }
+
+        .detail-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 6px;
+            border: 1px solid #eee;
+        }
+
+    .detail-info {
+        flex: 2;
+        padding-top: 10px;
+    }
+
+        .detail-info h2 {
+            font-size: 28px;
+            margin-top: 0;
+            color: #333;
+        }
+
+        .detail-info .price {
+            font-size: 32px;
+            color: #e53935;
+            font-weight: bold;
+            margin: 15px 0;
+        }
+
+        .detail-info .description {
+            margin-top: 20px;
+            line-height: 1.6;
+            color: #555;
+            border-top: 1px solid #eee;
+            padding-top: 15px;
+        }
+
+        .detail-info button {
+            background: #0a8f3c;
+            color: #fff;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            margin-top: 20px;
+        }
+
+            .detail-info button:hover {
+                background: #087330;
+            }
+
+        .detail-info .specs span {
+            display: block;
+            margin-bottom: 8px;
+            color: #777;
+            font-size: 14px;
+        }
+</style>
+
+<div class="product-detail-container">
+
+   
+    <div class="detail-image">
+       
+        <img src="@Url.Content("~/Images/" + Model.HINH)" alt="@Model.TENSP" />
+    </div>
+
+  
+    <div class="detail-info">
+
+        <h2>@Model.TENSP</h2>
+
+        <div class="price">
+            @string.Format("{0:N0}đ", Model.GIABAN)
+        </div>
+
+        <div class="specs">
+            <span>Mã sản phẩm: <strong>@Model.MASP</strong></span>
+            <span>Đơn vị tính: <strong>@Model.DVT</strong></span>
+
+        
+            <span>Loại sản phẩm: <strong>@(Model.LOAISANPHAM?.TENLOAI ?? "N/A")</strong></span>
+
+            @* Lấy Tên Nhà Cung Cấp (NHACUNGCAP) qua Navigation Property *@
+            <span>Nhà cung cấp: <strong>@(Model.NHACUNGCAP?.TENNCC ?? "N/A")</strong></span>
+
+            <span>Ngày sản xuất (NSX): <strong>@Html.DisplayFor(m => m.NSX)</strong></span>
+            <span>Số lượng tồn kho: <strong>@Model.SOLUONG</strong></span>
+            <span>Ghi chú: <strong>@Model.GHICHU</strong></span>
+
+            
+
+        </div>
+
+        <button>Thêm @Model.TENSP vào giỏ hàng</button>
+
+        <div class="description">
+            <h3>Thông tin chi tiết</h3>
+            @* Sử dụng GHICHU làm mô tả chi tiết sản phẩm *@
+            <p>@(Model.GHICHU ?? "Sản phẩm này hiện chưa có mô tả chi tiết.")</p>
+        </div>
+
+        <hr />
+        <div>
+            @Html.ActionLink("Chỉnh sửa", "Edit", new { id = Model.MASP }) |
+            @Html.ActionLink("Quay lại danh sách", "Index")
+        </div>
+    </div>
+</div>

@@ -1,239 +1,209 @@
-﻿@{
-    Layout = null;
-}
+﻿@*
+    _Layout.cshtml – Header đơn giản giống hình Bách Hóa Xanh
+*@
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
-    <title>@ViewBag.Title - Vui Bách Hóa</title>
+    <title>@ViewBag.Title</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
+</head>
+<body>
 
     <style>
         body {
             margin: 0;
-            font-family: Arial;
+            font-family: Arial,Helvetica,sans-serif;
+            background: #f5f5f5
         }
 
-        /* Banner */
-        .top-banner img {
-            width: 100%;
-            height: auto;
+        .container {
+            width: 1200px;
+            margin: auto
         }
 
-        /* Header chính */
-        .header-main {
+        a {
+            text-decoration: none;
+            color: inherit
+        }
+
+        /* ===== HEADER ===== */
+        .header {
+            background: #0a8f3c;
+            color: #fff
+        }
+
+        .header-bar {
             display: flex;
             align-items: center;
-            justify-content: space-between;
-            padding: 15px 40px;
-            background: white;
+            gap: 15px;
+            padding: 10px 0
         }
 
-        .logo img {
-            height: 60px;
-        }
-
-        /* Search box */
-        .search-box {
-            flex: 1;
+        .logo {
             display: flex;
-            margin: 0 30px;
+            align-items: center;
+            gap: 8px;
+            font-weight: bold;
+            color: #ffe600;
+            font-size: 18px
         }
 
-            .search-box input {
-                width: 100%;
-                padding: 10px;
-                border: 1px solid #ccc;
-                border-radius: 5px 0 0 5px;
-            }
+        .category-btn {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: #087a34;
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-size: 14px;
+            cursor: pointer;
+            white-space: nowrap;
+        }
 
-            .search-box button {
-                padding: 10px 20px;
-                background: #5a5a5a;
-                color: white;
+        .search {
+            flex: 1;
+            display: flex
+        }
+
+            .search input {
+                flex: 1;
+                padding: 9px 12px;
                 border: none;
-                border-radius: 0 5px 5px 0;
+                border-radius: 20px 0 0 20px;
+                outline: none
             }
 
-        /* Header right */
+            .search button {
+                padding: 0 15px;
+                border: none;
+                background: #fff;
+                border-radius: 0 20px 20px 0;
+                cursor: pointer
+            }
+
         .header-right {
             display: flex;
-            gap: 25px;
+            align-items: center;
+            gap: 15px;
+            font-size: 14px
         }
 
-            .header-right .item {
-                display: flex;
-                align-items: center;
-                color: #333;
-            }
-
-                .header-right .item i {
-                    font-size: 22px;
-                    margin-right: 8px;
-                }
-
-        /* Menu */
-        .menu {
-            background: #0e4f1f;
-            padding: 10px 0;
+        .location {
+            background: #087a34;
+            padding: 8px 12px;
+            border-radius: 20px;
+            white-space: nowrap
         }
 
-            .menu ul {
-                list-style: none;
-                display: flex;
-                justify-content: center;
-                gap: 40px;
-                margin: 0;
-                padding: 0;
-            }
-
-            .menu a {
-                color: white;
-                font-weight: bold;
-                font-size: 16px;
-                text-transform: lowercase;
-                text-decoration: none;
-            }
-
-        /* BODY */
-        .container-body {
-            padding: 20px 40px;
-            min-height: 400px;
+        .icon {
+            font-size: 18px
         }
 
-        /* Footer */
-        footer {
-            background: #0e4f1f;
-            color: white;
-            padding: 40px 60px;
+        /* ===== BODY ===== */
+        .body-content {
+            min-height: 600px;
+            padding: 15px 0
         }
 
-        .footer-container {
-            display: flex;
-            justify-content: space-between;
-        }
-
-        .footer-col h3 {
-            margin-bottom: 15px;
-        }
-
-        .footer-col ul {
-            padding: 0;
-            margin: 0;
-            list-style: none;
-        }
-
-        .social-icons i {
-            font-size: 24px;
-            margin-right: 10px;
-            cursor: pointer;
-        }
+        /* ===== FOOTER (để trống hoặc dùng sau) ===== */
     </style>
-</head>
-<body>
 
-    <!-- ======================= HEADER ======================= -->
-    <header>
+    <!-- ================= HEADER ================= -->
+    <div class="header">
+        <div class="container header-bar">
 
-        <!-- Banner -->
-        <div class="top-banner">
-            <img src="~/Images/banner.png" alt="Banner" />
-        </div>
+            <div class="logo">Bách hóa <b>XANH</b></div>
 
-        <!-- Header chính -->
-        <div class="header-main">
-            <div class="logo">
-                <img src="~/Images/logo.png" alt="Logo" />
-            </div>
 
-            <!-- Ô tìm kiếm -->
-            <div class="search-box">
-                <input type="text" placeholder="bạn muốn tìm sản phẩm gì ?" />
-                <button>tìm kiếm</button>
-            </div>
+            @*<div class="search">
+                <input type="text" placeholder="nhập thứ bạn muốn tìm" />
+                <button>🔍</button>
+            </div>*@
+            <form class="search" action="@Url.Action("Search", "Home")" method="get">
+                <input type="text"
+                       name="keyword"
+                       placeholder="Tìm sản phẩm..."
+                       style="padding:6px; width:220px;" />
+                <button type="submit">🔍</button>
+            </form>
 
-            <!-- Liên hệ / Login / Giỏ hàng -->
+
             <div class="header-right">
-                <div class="item">
-                    <i class="fa fa-phone"></i>
-                    <div>
-                        <div>hỗ trợ khách hàng</div>
-                        <div>0987.654.321</div>
-                    </div>
-                </div>
-
-                <div class="item">
-                    <i class="fa fa-user"></i>
-                    <div>
-                        <a href="/Account/Login">đăng nhập</a><br />
-                        <a href="/Account/Register">đăng ký</a>
-                    </div>
-                </div>
-
-                <div class="item">
-                    <i class="fa fa-shopping-bag"></i>
-                    <div>giỏ hàng</div>
-                </div>
+                <div class="icon">🛒</div>
+                <div>👤 Đăng nhập</div>
             </div>
+
         </div>
+    </div>
 
-        <!-- Menu -->
-        <nav class="menu">
-            <ul>
-                <li><a href="~/Home/Index">trang chủ</a></li>
-                <li><a href="/Home/GioiThieu">giới thiệu</a></li>
-                <li><a href="~/Home/SanPham">sản phẩm</a></li>
-                <li><a href="/TinTuc">tin tức</a></li>
-                <li><a href="/TuyenDung">tuyển dụng</a></li>
-                <li><a href="/LienHe">liên hệ</a></li>
-            </ul>
-        </nav>
-    </header>
-
-
-    <!-- ======================= BODY CONTENT ======================= -->
-    <div class="container-body">
+    <!-- ================= BODY ================= -->
+    <div class="container body-content">
         @RenderBody()
     </div>
 
-
-    <!-- ======================= FOOTER ======================= -->
-    <footer>
-        <div class="footer-container">
-
-            <!-- Cột 1 -->
-            <div class="footer-col">
-                <h3>Bách hóa vui - điểm đến của bà nội trợ</h3>
-                <ul>
-                    <li>địa chỉ: 140 - lê trọng tấn, tân phú, tp hcm</li>
-                    <li>phone: 0987654321</li>
-                    <li>email: bantungkhongten@gmail.com</li>
-                </ul>
+    <!-- ================= FOOTER ================= -->
+    <div class="footer">
+        <div class="container footer-top">
+            <div>
+                <b>Về Bách Hóa Xanh</b><br />
+                Giới thiệu<br />
+                Hệ thống cửa hàng<br />
+                Tuyển dụng
             </div>
-
-            <!-- Cột 2 -->
-            <div class="footer-col">
-                <h3>Chăm sóc khách hàng</h3>
-                <ul>
-                    <li>chính sách vận chuyển</li>
-                    <li>chính sách bảo hành</li>
-                    <li>chính sách đổi trả</li>
-                    <li>hướng dẫn thanh toán</li>
-                </ul>
+            <div>
+                <b>Hỗ trợ khách hàng</b><br />
+                Chính sách đổi trả<br />
+                Hướng dẫn mua hàng<br />
+                Câu hỏi thường gặp
             </div>
-
-            <!-- Cột 3 -->
-            <div class="footer-col">
-                <h3>Liên kết mạng xã hội</h3>
-                <div class="social-icons">
-                    <i class="fa-brands fa-facebook"></i>
-                    <i class="fa-brands fa-youtube"></i>
-                    <i class="fa-brands fa-facebook-messenger"></i>
-                </div>
+            <div>
+                <b>Chính sách</b><br />
+                Giao hàng<br />
+                Thanh toán<br />
+                Bảo mật thông tin
+            </div>
+            <div>
+                <b>Liên hệ</b><br />
+                Hotline: 1900 xxxx<br />
+                Email: support@bhx.vn
             </div>
         </div>
-    </footer>
+        <div class="footer-bottom">
+            © 2025 Bách Hóa Xanh (Clone – phục vụ học tập)
+        </div>
+    </div>
 
+    <style>
+        .footer {
+            background: #fff;
+            border-top: 1px solid #ddd;
+            margin-top: 30px
+        }
+
+        .footer-top {
+            display: grid;
+            grid-template-columns: repeat(4,1fr);
+            gap: 20px;
+            padding: 25px 0;
+            font-size: 14px;
+            color: #444
+        }
+
+            .footer-top b {
+                display: block;
+                margin-bottom: 6px
+            }
+
+        .footer-bottom {
+            text-align: center;
+            padding: 10px 0;
+            background: #f0f0f0;
+            font-size: 13px;
+            color: #666
+        }
+    </style>
+
+    @RenderSection("Scripts", required: false)
 </body>
 </html>

@@ -275,6 +275,11 @@
     <Content Include="Images\dacsanvungmien.png" />
     <Content Include="Images\douong.png" />
     <Content Include="Images\hoaqua.png" />
+    <Content Include="Images\khuyenmai1.png" />
+    <Content Include="Images\khuyenmai2.png" />
+    <Content Include="Images\khuyenmai3.png" />
+    <Content Include="Images\khuyenmai4.png" />
+    <Content Include="Images\khuyenmai5.png" />
     <Content Include="Images\logo.png" />
     <Content Include="Images\raucu.png" />
     <Content Include="Images\sanphamkhac.png" />
@@ -341,6 +346,8 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_LayoutPage1.cshtml" />
     <Content Include="Views\Home\SanPham.cshtml" />
+    <Content Include="Views\Home\Details.cshtml" />
+    <Content Include="Views\Home\Search.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
