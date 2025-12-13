@@ -1,0 +1,190 @@
+﻿@model Login.Models.RegisterViewModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Đăng ký - Nhóm 14 CNPM</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --primary-green: #008848;
+            --primary-yellow: #feaa2a;
+            --bg-gray: #f0f0f0;
+        }
+
+        body {
+            background-color: var(--bg-gray);
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
+
+        .header-top {
+            background-color: var(--primary-green);
+            padding: 10px 0;
+            color: white;
+        }
+
+        .logo-text {
+            background-color: var(--primary-yellow);
+            color: #000;
+            font-weight: 800;
+            padding: 5px 15px;
+            border-radius: 5px;
+            text-transform: uppercase;
+            font-size: 14px;
+        }
+
+        .sub-header {
+            background-color: #006a31;
+            color: white;
+            padding: 8px 0;
+            font-size: 14px;
+        }
+
+        .login-container {
+            min-height: 70vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px 0;
+        }
+
+        .login-card {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 450px;
+            text-align: center;
+        }
+
+            .login-card h3 {
+                font-weight: bold;
+                font-size: 20px;
+                margin-bottom: 5px;
+            }
+
+            .login-card p {
+                color: #666;
+                font-size: 13px;
+                margin-bottom: 25px;
+            }
+
+        .input-group-text {
+            background-color: white;
+            color: #666;
+            width: 45px;
+            justify-content: center;
+        }
+
+        .form-control:focus {
+            box-shadow: none;
+            border-color: var(--primary-green);
+        }
+
+        .btn-login {
+            background-color: var(--primary-green);
+            color: white;
+            font-weight: bold;
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            margin-top: 15px;
+            text-transform: uppercase;
+        }
+
+            .btn-login:hover {
+                background-color: #006a31;
+                color: white;
+            }
+
+        .btn-secondary-action {
+            font-size: 14px;
+            color: var(--primary-green);
+            text-decoration: none;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-top">
+            <div class="container">
+                <div class="d-flex align-items-center justify-content-between">
+                    <div class="logo-text">Nhóm 14 CNPM</div>
+                    <div class="text-white small">Hotline: 1900.1900</div>
+                </div>
+            </div>
+        </div>
+        <div class="sub-header"><div class="container"><i class="fa-solid fa-bars"></i> &nbsp; DANH MỤC</div></div>
+    </header>
+
+    <div class="container login-container">
+        <div class="login-card">
+            <h3>Đăng ký tài khoản</h3>
+            <p>Tạo tài khoản để mua sắm dễ dàng hơn</p>
+
+            <form asp-action="Register" asp-controller="Account" method="post">
+                <div class="mb-3 text-start">
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="fa-solid fa-user-tag"></i></span>
+                        <input asp-for="FullName" class="form-control" placeholder="Họ và tên" />
+                    </div>
+                    <span asp-validation-for="FullName" class="text-danger small"></span>
+                </div>
+
+                <div class="mb-3 text-start">
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="fa-solid fa-phone"></i></span>
+                        <input asp-for="Phone" class="form-control" placeholder="Số điện thoại" />
+                    </div>
+                    <span asp-validation-for="Phone" class="text-danger small"></span>
+                </div>
+
+                <div class="mb-3 text-start">
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="fa-solid fa-envelope"></i></span>
+                        <input asp-for="Email" class="form-control" placeholder="Email (Không bắt buộc)" />
+                    </div>
+                </div>
+
+                <div class="mb-3 text-start">
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="fa-solid fa-lock"></i></span>
+                        <input asp-for="Password" type="password" class="form-control" placeholder="Mật khẩu" />
+                    </div>
+                    <span asp-validation-for="Password" class="text-danger small"></span>
+                </div>
+
+                <div class="mb-3 text-start">
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="fa-solid fa-check-double"></i></span>
+                        <input asp-for="ConfirmPassword" type="password" class="form-control" placeholder="Nhập lại mật khẩu" />
+                    </div>
+                    <span asp-validation-for="ConfirmPassword" class="text-danger small"></span>
+                </div>
+
+                <button type="submit" class="btn-login">Đăng ký ngay</button>
+            </form>
+
+            <div class="mt-4">
+                <span class="text-muted small">Bạn đã có tài khoản?</span>
+                <a asp-action="Login" asp-controller="Account" class="btn-secondary-action ms-1">Đăng nhập</a>
+            </div>
+
+            <div class="mt-4 small text-muted">
+                Bằng cách đăng ký, bạn đồng ý  <a href="#" class="text-decoration-none text-success">Điều khoản dịch vụ</a> với cái chợ 14
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
