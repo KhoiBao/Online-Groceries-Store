@@ -1,0 +1,196 @@
+﻿@{
+    ViewBag.Title = "Xác Nhận Đơn Hàng";
+    Layout = null; // Hoặc sử dụng Layout của bạn
+}
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Xác Nhận Đơn Hàng - Chợ Nhóm 14</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background-color: #f9fafb;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        .confirmation-container {
+            max-width: 600px;
+            width: 100%;
+            background: white;
+            border-radius: 1rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            padding: 3rem;
+            text-align: center;
+        }
+
+        .success-icon {
+            font-size: 5rem;
+            color: #0D8344;
+            margin-bottom: 1.5rem;
+        }
+
+        h1 {
+            color: #0D8344;
+            margin-bottom: 1rem;
+            font-size: 2rem;
+        }
+
+        .success-message {
+            font-size: 1.2rem;
+            color: #374151;
+            margin-bottom: 2rem;
+        }
+
+        .order-info {
+            background: #f3f4f6;
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            text-align: left;
+        }
+
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.75rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+            .info-row:last-child {
+                border-bottom: none;
+                margin-bottom: 0;
+            }
+
+        .info-label {
+            font-weight: 600;
+            color: #374151;
+        }
+
+        .info-value {
+            color: #111827;
+        }
+
+        .total-amount {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #dc2626;
+        }
+
+        .thank-you {
+            color: #6b7280;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: none;
+            font-size: 1rem;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background-color: #0D8344;
+            color: white;
+        }
+
+            .btn-primary:hover {
+                background-color: #065f32;
+            }
+
+        .btn-outline {
+            background-color: white;
+            color: #0D8344;
+            border: 1px solid #0D8344;
+        }
+
+            .btn-outline:hover {
+                background-color: #f0fdf4;
+            }
+
+        .contact-info {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid #e5e7eb;
+            color: #6b7280;
+            font-size: 0.875rem;
+        }
+
+        .hotline {
+            color: #dc2626;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="confirmation-container">
+        <div class="success-icon">✓</div>
+        <h1>Đặt Hàng Thành Công!</h1>
+        <p class="success-message">Cảm ơn bạn đã mua hàng tại Chợ Nhóm 14</p>
+
+        <div class="order-info">
+            <div class="info-row">
+                <span class="info-label">Mã đơn hàng:</span>
+                <span class="info-value">@ViewBag.OrderId</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">Khách hàng:</span>
+                <span class="info-value">@ViewBag.CustomerName</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">Số điện thoại:</span>
+                <span class="info-value">@ViewBag.CustomerPhone</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">Địa chỉ giao hàng:</span>
+                <span class="info-value">@ViewBag.CustomerAddress</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">Tổng tiền:</span>
+                <span class="info-value total-amount">@string.Format("{0:N0}đ", ViewBag.TotalAmount)</span>
+            </div>
+        </div>
+
+        <p class="thank-you">
+            Chúng tôi sẽ liên hệ với bạn trong thời gian sớm nhất để xác nhận đơn hàng.<br>
+            Vui lòng giữ liên lạc để nhận thông báo về tình trạng đơn hàng.
+        </p>
+
+        <div class="button-group">
+            <a href="@Url.Action("Index", "Home")" class="btn btn-primary">Về trang chủ</a>
+            <a href="@Url.Action("SanPham", "Home")" class="btn btn-outline">Tiếp tục mua sắm</a>
+        </div>
+
+        <div class="contact-info">
+            <p>Nếu có thắc mắc, vui lòng liên hệ:</p>
+            <p>Hotline: <span class="hotline">1900 1234</span></p>
+            <p>Email: support@chnhom14.vn</p>
+        </div>
+    </div>
+</body>
+</html>

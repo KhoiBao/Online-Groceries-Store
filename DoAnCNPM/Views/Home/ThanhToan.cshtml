@@ -1,0 +1,656 @@
+﻿@{
+    ViewBag.Title = "Thanh Toán";
+    Layout = null; // Hoặc Layout của bạn
+}
+
+@{
+    // Lấy giỏ hàng từ Session
+    var gioHang = Session["GioHang"] as List<DoAnCNPM.Models.ItemGioHang>;
+    var soLuongSanPham = gioHang?.Count ?? 0;
+    var tongTien = gioHang?.Sum(item => item.ThanhTien) ?? 0;
+    var phiVanChuyen = 30000;
+    var tongCong = tongTien + phiVanChuyen;
+}
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thanh Toán - Chợ Nhóm 14</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background-color: #f9fafb;
+        }
+
+        .header {
+            background-color: #0D8344;
+            color: white;
+            padding: 1rem 1.5rem;
+        }
+
+        .header-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+        }
+
+        .header-location {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.875rem;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 0.875rem;
+        }
+
+        .header-main {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .search-container {
+            flex: 1;
+            max-width: 600px;
+            position: relative;
+        }
+
+        .search-container input {
+            width: 100%;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            border: none;
+            font-size: 0.875rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
+        h1 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: #111827;
+        }
+
+        .checkout-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 1.5rem;
+        }
+
+        @@media (max-width: 1024px) {
+            .checkout-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .card {
+            background-color: white;
+            border-radius: 0.5rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .card-title {
+            font-size: 1.125rem;
+            margin-bottom: 1rem;
+            color: #111827;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+
+        .form-row-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+        }
+
+        label {
+            display: block;
+            font-size: 0.875rem;
+            margin-bottom: 0.5rem;
+            color: #374151;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 0.5rem 1rem;
+            border: 1px solid #d1d5db;
+            border-radius: 0.5rem;
+            font-size: 0.875rem;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: #0D8344;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .payment-options {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .payment-option {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1rem;
+            border: 1px solid #d1d5db;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .payment-option:hover {
+            background-color: #f9fafb;
+        }
+
+        .payment-option input[type="radio"] {
+            width: auto;
+            margin: 0;
+        }
+
+        .payment-option-content {
+            flex: 1;
+        }
+
+        .payment-option-title {
+            font-weight: 500;
+            margin-bottom: 0.25rem;
+        }
+
+        .payment-option-desc {
+            font-size: 0.875rem;
+            color: #6b7280;
+        }
+
+        .product-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .product-item {
+            display: flex;
+            gap: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .product-item:last-child {
+            border-bottom: none;
+        }
+
+        .product-image {
+            width: 60px;
+            height: 60px;
+            background-color: #f3f4f6;
+            border-radius: 0.5rem;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .product-info {
+            flex: 1;
+        }
+
+        .product-name {
+            font-size: 0.875rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .product-quantity {
+            font-size: 0.875rem;
+            color: #6b7280;
+        }
+
+        .product-price {
+            font-size: 0.875rem;
+            color: #dc2626;
+            text-align: right;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.75rem;
+            font-size: 0.875rem;
+        }
+
+        .summary-label {
+            color: #6b7280;
+        }
+
+        .summary-divider {
+            border-top: 1px solid #e5e7eb;
+            margin: 1rem 0;
+        }
+
+        .summary-total {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .total-label {
+            font-size: 1.125rem;
+        }
+
+        .total-amount {
+            font-size: 1.5rem;
+            color: #dc2626;
+            font-weight: 600;
+        }
+
+        .vat-note {
+            font-size: 0.75rem;
+            color: #6b7280;
+            margin-bottom: 1.5rem;
+        }
+
+        .btn-order {
+            width: 100%;
+            padding: 0.75rem;
+            background-color: #0D8344;
+            color: white;
+            border: none;
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .btn-order:hover {
+            background-color: #065f32;
+        }
+
+        .btn-order:disabled {
+            background-color: #9ca3af;
+            cursor: not-allowed;
+        }
+
+        .terms-note {
+            font-size: 0.75rem;
+            color: #6b7280;
+            text-align: center;
+            margin-top: 1rem;
+        }
+
+        .sticky-summary {
+            position: sticky;
+            top: 1rem;
+        }
+
+        .empty-cart-message {
+            text-align: center;
+            padding: 2rem;
+            color: #6b7280;
+            font-style: italic;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .cart-item:last-child {
+            border-bottom: none;
+        }
+
+        .item-info {
+            flex: 1;
+        }
+
+        .item-name {
+            font-weight: 500;
+            margin-bottom: 0.25rem;
+        }
+
+        .item-price {
+            color: #dc2626;
+            font-weight: 600;
+        }
+
+        .alert-warning {
+            background-color: #fef3c7;
+            border: 1px solid #f59e0b;
+            color: #92400e;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .alert-success {
+            background-color: #d1fae5;
+            border: 1px solid #10b981;
+            color: #065f46;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .login-prompt {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .login-btn {
+            display: inline-block;
+            background-color: #0D8344;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            margin-top: 1rem;
+            font-weight: 500;
+        }
+
+        .login-btn:hover {
+            background-color: #065f32;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-top">
+            <div class="header-location">
+            </div>
+            <div class="header-right">
+                <span>Tiếng Việt</span>
+                <span>👤</span>
+                <span>🛒</span>
+            </div>
+        </div>
+        <div class="header-main">
+            <div class="logo">Chợ Nhóm 14</div>
+            <div class="search-container">
+                <input type="text" placeholder="Bạn đang tìm gì bây giờ?">
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <h1>Thanh Toán</h1>
+
+        @if (Session["User"] == null)
+        {
+            <!-- Hiển thị thông báo chưa đăng nhập -->
+            <div class="card">
+                <div class="login-prompt">
+                    <h3>Vui lòng đăng nhập để thanh toán</h3>
+                    <p>Bạn cần đăng nhập để tiếp tục thanh toán.</p>
+                    <a href="@Url.Action("Login", "Home")" class="login-btn">Đăng nhập ngay</a>
+                </div>
+            </div>
+        }
+        else if (soLuongSanPham == 0)
+        {
+            <!-- Hiển thị thông báo giỏ hàng trống -->
+            <div class="card">
+                <div class="empty-cart-message">
+                    <h3>Giỏ hàng của bạn đang trống</h3>
+                    <p>Vui lòng thêm sản phẩm vào giỏ hàng trước khi thanh toán.</p>
+                    <a href="@Url.Action("SanPham", "Home")" class="login-btn">Mua sắm ngay</a>
+                </div>
+            </div>
+        }
+        else
+        {
+            <!-- Hiển thị form thanh toán -->
+            <form id="checkoutForm" method="post" action="@Url.Action("ThanhToan", "Home")">
+                @Html.AntiForgeryToken()
+
+                <div class="checkout-grid">
+                    <div>
+                        <!-- Thông tin giao hàng -->
+                        <div class="card">
+                            <h2 class="card-title">Thông Tin Giao Hàng</h2>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>Họ và Tên *</label>
+                                    <input type="text" name="fullName" required placeholder="Nhập họ và tên"
+                                           value="@ViewBag.FullName">
+                                </div>
+                                <div class="form-group">
+                                    <label>Số Điện Thoại *</label>
+                                    <input type="tel" name="phone" required placeholder="Nhập số điện thoại">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Email</label>
+                                <input type="email" name="email" placeholder="Nhập email"
+                                       value="@ViewBag.Email">
+                            </div>
+
+                            <div class="form-group">
+                                <label>Địa Chỉ *</label>
+                                <input type="text" name="address" required placeholder="Nhập số nhà, tên đường">
+                            </div>
+
+                            <div class="form-row-3">
+                                <div class="form-group">
+                                    <label>Tỉnh/Thành Phố *</label>
+                                    <select name="city" required>
+                                        <option value="">Chọn</option>
+                                        <option value="HCM">TP. Hồ Chí Minh</option>
+                                        <option value="HN">Hà Nội</option>
+                                        <option value="DN">Đà Nẵng</option>
+                                        <option value="CT">Cần Thơ</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Quận/Huyện *</label>
+                                    <select name="district" required>
+                                        <option value="">Chọn</option>
+                                        <option value="Q1">Quận 1</option>
+                                        <option value="Q2">Quận 2</option>
+                                        <option value="Q3">Quận 3</option>
+                                        <option value="Q4">Quận 4</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Phường/Xã *</label>
+                                    <select name="ward" required>
+                                        <option value="">Chọn</option>
+                                        <option value="P1">Phường 1</option>
+                                        <option value="P2">Phường 2</option>
+                                        <option value="P3">Phường 3</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Ghi Chú</label>
+                                <textarea name="note" placeholder="Ghi chú về đơn hàng, ví dụ: thời gian hay chỉ dẫn địa điểm giao hàng chi tiết hơn"></textarea>
+                            </div>
+                        </div>
+
+                        <!-- Phương thức thanh toán -->
+                        <div class="card">
+                            <h2 class="card-title">Phương Thức Thanh Toán</h2>
+
+                            <div class="payment-options">
+                                <div class="payment-option">
+                                    <input type="radio" id="cod" name="paymentMethod" value="cod" checked>
+                                    <div class="payment-option-content">
+                                        <label for="cod" class="payment-option-title">Thanh toán khi nhận hàng (COD)</label>
+                                        <div class="payment-option-desc">Thanh toán bằng tiền mặt khi nhận hàng</div>
+                                    </div>
+                                </div>
+
+                                <div class="payment-option">
+                                    <input type="radio" id="banking" name="paymentMethod" value="banking">
+                                    <div class="payment-option-content">
+                                        <label for="banking" class="payment-option-title">Chuyển khoản ngân hàng</label>
+                                        <div class="payment-option-desc">Chuyển khoản qua ATM, Internet Banking</div>
+                                    </div>
+                                </div>
+
+                                <div class="payment-option">
+                                    <input type="radio" id="momo" name="paymentMethod" value="momo">
+                                    <div class="payment-option-content">
+                                        <label for="momo" class="payment-option-title">Ví điện tử MoMo</label>
+                                        <div class="payment-option-desc">Thanh toán qua ví MoMo</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Sản phẩm -->
+                        <div class="card">
+                            <h2 class="card-title">Sản Phẩm (@soLuongSanPham)</h2>
+
+                            <div class="product-list">
+                                @if (gioHang != null && gioHang.Count > 0)
+                                {
+                                    foreach (var item in gioHang)
+                                    {
+                                        <div class="product-item">
+                                            <div class="product-image">
+                                                <!-- Có thể thêm hình ảnh sản phẩm -->
+                                                <div style="width:100%; height:100%; background:#f3f4f6; display:flex; align-items:center; justify-content:center;">
+                                                    <span>📦</span>
+                                                </div>
+                                            </div>
+                                            <div class="product-info">
+                                                <div class="product-name">@item.TenSP</div>
+                                                <div class="product-quantity">Số lượng: @item.SoLuong</div>
+                                            </div>
+                                            <div class="product-price">
+                                                @string.Format("{0:N0}đ", item.ThanhTien)
+                                            </div>
+                                        </div>
+                                    }
+                                }
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tổng đơn hàng -->
+                    <div>
+                        <div class="card sticky-summary">
+                            <h2 class="card-title">Tổng Đơn Hàng</h2>
+
+                            <div class="summary-row">
+                                <span class="summary-label">Tạm tính (@soLuongSanPham sản phẩm)</span>
+                                <span>@string.Format("{0:N0}đ", tongTien)</span>
+                            </div>
+
+                            <div class="summary-row">
+                                <span class="summary-label">Phí vận chuyển</span>
+                                <span>@string.Format("{0:N0}đ", phiVanChuyen)</span>
+                            </div>
+
+                            <div class="summary-divider"></div>
+
+                            <div class="summary-total">
+                                <span class="total-label">Tổng cộng</span>
+                                <span class="total-amount">@string.Format("{0:N0}đ", tongCong)</span>
+                            </div>
+
+                            <div class="vat-note">Đã bao gồm VAT (nếu có)</div>
+
+                            <button type="submit" class="btn-order">ĐẶT HÀNG</button>
+
+                            <div class="terms-note">
+                                Bằng cách đặt hàng, bạn đồng ý với Điều khoản sử dụng của Chợ Nhóm 14
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        }
+    </div>
+
+    <script>
+        // Hiển thị thông báo lỗi nếu có
+        @if (TempData["ErrorMessage"] != null)
+        {
+            <text>
+            alert('@Html.Raw(TempData["ErrorMessage"])');
+            </text>
+        }
+
+        // Kiểm tra form trước khi submit
+        document.getElementById('checkoutForm')?.addEventListener('submit', function(e) {
+            // Kiểm tra đã chọn địa chỉ chưa
+            var city = document.querySelector('select[name="city"]');
+            var district = document.querySelector('select[name="district"]');
+            var ward = document.querySelector('select[name="ward"]');
+
+            if (city.value === '' || district.value === '' || ward.value === '') {
+                e.preventDefault();
+                alert('Vui lòng chọn đầy đủ thông tin địa chỉ giao hàng!');
+                return false;
+            }
+
+            // Kiểm tra số điện thoại
+            var phone = document.querySelector('input[name="phone"]');
+            var phoneRegex = /(03|05|07|08|09|01[2|6|8|9])+([0-9]{8})\b/;
+            if (!phoneRegex.test(phone.value)) {
+                e.preventDefault();
+                alert('Vui lòng nhập số điện thoại hợp lệ!');
+                return false;
+            }
+
+            // Xác nhận đặt hàng
+            if (!confirm('Bạn có chắc chắn muốn đặt hàng?')) {
+                e.preventDefault();
+                return false;
+            }
+
+            return true;
+        });
+    </script>
+</body>
+</html>

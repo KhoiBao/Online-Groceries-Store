@@ -1,0 +1,168 @@
+﻿@using DoAnCNPM.Models
+@model DoAnCNPM.Models.SANPHAM
+
+@{
+    ViewBag.Title = "Chi tiết sản phẩm: " + Model.TENSP;
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+<style>
+    /* CSS được giữ nguyên */
+    .product-detail-container {
+        display: flex;
+        gap: 30px;
+        padding: 40px;
+        background: #fff;
+        margin: 20px auto;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        max-width: 1200px;
+    }
+
+    .detail-image {
+        flex: 1;
+        max-width: 400px;
+        text-align: center;
+    }
+
+        .detail-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 6px;
+            border: 1px solid #eee;
+        }
+
+    .detail-info {
+        flex: 2;
+        padding-top: 10px;
+    }
+
+        .detail-info h2 {
+            font-size: 28px;
+            margin-top: 0;
+            color: #333;
+        }
+
+        .detail-info .price {
+            font-size: 32px;
+            color: #e53935;
+            font-weight: bold;
+            margin: 15px 0;
+        }
+
+        .detail-info .description {
+            margin-top: 20px;
+            line-height: 1.6;
+            color: #555;
+            border-top: 1px solid #eee;
+            padding-top: 15px;
+        }
+
+        .detail-info .add-to-cart-btn { /* Áp dụng CSS cho nút submit */
+            background: #0a8f3c;
+            color: #fff;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            margin-top: 20px;
+            margin-left: 20px; /* Thêm khoảng cách với input số lượng */
+        }
+
+            .detail-info .add-to-cart-btn:hover {
+                background: #087330;
+            }
+
+    .quantity-input-group {
+        display: flex;
+        align-items: center;
+        margin-top: 20px;
+    }
+
+    .add-to-cart-form {
+        display: flex;
+        align-items: center;
+        margin-top: 20px;
+    }
+
+    .detail-info .specs span {
+        display: block;
+        margin-bottom: 8px;
+        color: #777;
+        font-size: 14px;
+    }
+</style>
+
+<div class="product-detail-container">
+
+
+    <div class="detail-image">
+        <img src="@Url.Content("~/Images/" + Model.HINH)" alt="@Model.TENSP" />
+    </div>
+
+
+    <div class="detail-info">
+
+        <h2>@Model.TENSP</h2>
+
+        <div class="price">
+            @string.Format("{0:N0}đ", Model.GIABAN)
+        </div>
+
+        <div class="specs">
+            <span>Mã sản phẩm: <strong>@Model.MASP</strong></span>
+            <span>Đơn vị tính: <strong>@Model.DVT</strong></span>
+
+            <span>Loại sản phẩm: <strong>@(Model.LOAISANPHAM?.TENLOAI ?? "N/A")</strong></span>
+
+            @* Lấy Tên Nhà Cung Cấp (NHACUNGCAP) qua Navigation Property *@
+            <span>Nhà cung cấp: <strong>@(Model.NHACUNGCAP?.TENNCC ?? "N/A")</strong></span>
+
+            <span>Ngày sản xuất (NSX): <strong>@Html.DisplayFor(m => m.NSX)</strong></span>
+            <span>Số lượng tồn kho: <strong>@Model.SOLUONG</strong></span>
+            <span>Ghi chú: <strong>@Model.GHICHU</strong></span>
+
+        </div>
+
+        @* FORM ĐÃ SỬA LỖI NAME và THÊM strURL *@
+        @using (Html.BeginForm("ThemGioHang", "Home", FormMethod.Post, new { @class = "add-to-cart-form" }))
+        {
+            @Html.AntiForgeryToken()
+
+            <input type="hidden" name="id" value="@Model.MASP" />
+
+            @* Thêm input ẩn để truyền URL hiện tại (trang chi tiết sản phẩm) *@
+            <input type="hidden" name="strURL" value="@Request.Url.ToString()" />
+
+            <div class="quantity-input-group">
+                <label for="quantity" style="margin-right: 10px; font-weight: 500;">Số lượng:</label>
+                <input type="number"
+                       id="quantity"
+                       name="soLuong" @* <--- ĐÃ SỬA: Tên phải là "soLuong" *@
+                       value="1"
+                       min="1"
+                       max="@Model.SOLUONG"
+                       class="quantity-field"
+                       style="width: 60px; text-align: center; padding: 5px; border: 1px solid #ccc; border-radius: 4px;" />
+            </div>
+
+            <button type="submit" class="add-to-cart-btn">
+                🛒 Thêm @Model.TENSP vào giỏ hàng
+            </button>
+        }
+
+        <div class="description">
+            <h3>Thông tin chi tiết</h3>
+            @* Sử dụng GHICHU làm mô tả chi tiết sản phẩm *@
+            <p>@(Model.GHICHU ?? "Sản phẩm này hiện chưa có mô tả chi tiết.")</p>
+        </div>
+
+        <hr />
+        <div>
+            @*@Html.ActionLink("Chỉnh sửa", "Edit", new { id = Model.MASP }) |*@
+            @Html.ActionLink("Quay lại danh sách", "Index")
+        </div>
+    </div>
+</div>
