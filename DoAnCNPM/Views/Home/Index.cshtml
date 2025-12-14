@@ -1,0 +1,234 @@
+﻿@using DoAnCNPM.Models
+@model dynamic
+
+@{
+    ViewBag.Title = "Trang chủ";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+
+    var categorizedProducts = ViewBag.CategorizedProducts as Dictionary<string, List<SANPHAM>>
+                                ?? new Dictionary<string, List<SANPHAM>>();
+
+    var dbCategories = categorizedProducts.Keys.ToList();
+}
+
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        background: #f5f5f5;
+    }
+
+    .container {
+        width: 1200px;
+        margin: auto;
+    }
+
+    .main {
+        display: grid;
+        grid-template-columns: 220px 1fr;
+        gap: 15px;
+        margin-top: 15px;
+    }
+
+    /* ===== SIDEBAR (ĐÃ HỢP NHẤT VÀ TỐI ƯU) ===== */
+    .sidebar {
+        /* Nền trắng, nổi bật, có viền */
+        background: #fff;
+        border: 1px solid #ddd; /* Viền nhẹ */
+        border-radius: 8px;
+        height: fit-content;
+        padding: 10px 0; /* Padding dọc để làm đẹp */
+    }
+
+        /* Tiêu đề Danh mục */
+        .sidebar h4 {
+            /* Loại bỏ background xanh lá cũ */
+            margin: 0;
+            padding: 10px 20px;
+            color: #008000; /* Màu xanh lá cây nổi bật */
+            font-size: 18px; /* Kích thước lớn hơn */
+            font-weight: bold;
+            border-bottom: 2px solid #008000; /* Đường viền dưới màu xanh */
+            margin-bottom: 10px;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+    /* Liên kết danh mục */
+    .category-link {
+        text-decoration: none;
+        color: #333; /* Màu chữ mặc định tối */
+        display: block;
+        padding: 8px 20px; /* Tăng padding ngang để dễ bấm */
+        transition: background-color 0.2s, color 0.2s;
+        font-size: 14px;
+    }
+
+        .category-link:hover {
+            background-color: #e0f2e0; /* Nền xanh nhạt khi hover */
+            color: #008000; /* Chữ màu xanh nổi bật */
+            font-weight: 500;
+        }
+
+    /* Loại bỏ CSS sidebar cũ để tránh ghi đè/mờ */
+    /* ... (CSS cho BANNER, ICON ROW, CATEGORY SECTION, PRODUCTS giữ nguyên) ... */
+
+    /* ===== BANNER ===== */
+    .single-banner {
+        margin-bottom: 15px;
+        border-radius: 6px;
+        overflow: hidden;
+    }
+
+        .single-banner img {
+            width: 100%;
+            display: block;
+        }
+
+    /* ===== ICON ROW ===== */
+    .icon-row {
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        gap: 10px;
+        margin-bottom: 15px;
+    }
+
+    .icon-box {
+        background: #fff;
+        padding: 10px;
+        text-align: center;
+        border-radius: 4px;
+        font-size: 13px;
+    }
+
+
+    /* ===== CATEGORY SECTION ===== */
+    .category-section {
+        background: #fff;
+        margin-bottom: 20px;
+        padding: 15px;
+        border-radius: 4px;
+    }
+
+    .section-title {
+        font-size: 18px;
+        font-weight: bold;
+        border-bottom: 2px solid #0a8f3c;
+        margin-bottom: 10px;
+        padding-bottom: 5px;
+    }
+
+    .products {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 15px;
+    }
+
+    .product {
+        border: 1px solid #eee;
+        border-radius: 4px;
+        padding: 10px;
+        font-size: 14px;
+        transition: box-shadow .3s;
+    }
+
+        .product:hover {
+            box-shadow: 0 2px 8px rgba(0,0,0,.1);
+        }
+
+        .product img {
+            width: 100%;
+            height: 150px;
+            object-fit: contain;
+        }
+
+    .product-name {
+        min-height: 40px;
+        margin: 5px 0;
+    }
+
+    .price {
+        color: #e53935;
+        font-weight: bold;
+    }
+
+    /* CSS cho nút "Thêm vào Giỏ hàng" (Giữ nguyên) */
+    .add-to-cart-btn {
+        display: inline-block;
+        padding: 7px 10px; /* Giảm padding cho thẻ sản phẩm */
+        width: 100%;
+        box-sizing: border-box; /* Quan trọng */
+        text-align: center;
+        text-decoration: none;
+        font-weight: bold;
+        cursor: pointer;
+        background-color: #0a8f3c; /* Màu nền xanh lá */
+        color: white;
+        border: none;
+        border-radius: 4px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        transition: background-color 0.3s ease;
+        font-size: 14px;
+        margin-top: 5px;
+    }
+
+        .add-to-cart-btn:hover {
+            background-color: #087330; /* Màu xanh đậm hơn */
+        }
+</style>
+
+<div class="container main">
+
+    <div class="sidebar">
+        <h4><i class="fas fa-list"></i> Danh mục sản phẩm</h4>
+        <ul>
+            @foreach (var category in dbCategories)
+            {
+                <li>
+                    <a href="@Url.Action("SanPhamTheoLoai", "Home", new { tenLoai = category })" class="category-link">
+                        @category
+                    </a>
+                </li>
+            }
+        </ul>
+    </div>
+
+    <div>
+
+        <div class="single-banner">
+            <a href="###">
+                <img src="@Url.Content("~/Images/khuyenmai1.png")" alt="Banner Khuyến mãi" />
+            </a>
+        </div>
+
+        @foreach (var categoryGroup in categorizedProducts)
+        {
+            <div class="category-section">
+                <div class="section-title">@categoryGroup.Key</div>
+
+                <div class="products">
+                    @foreach (var product in categoryGroup.Value.Take(8))
+                    {
+                        <div class="product">
+                            <a href="@Url.Action("Details", "Home", new { id = product.MASP })">
+                                <img src="@Url.Content("~/Images/" + product.HINH)" alt="@product.TENSP" />
+                            </a>
+                            <div class="product-name">@product.TENSP</div>
+                            <div class="price">@string.Format("{0:N0}đ", product.GIABAN)</div>
+
+                            @* Thêm nút Mua nhanh (đã bao gồm strURL để quay lại) *@
+                            <a href="@Url.Action("ThemGioHang", "Home", new { id = product.MASP, soLuong = 1, strURL = Request.Url.ToString() })" class="add-to-cart-btn">
+                                🛒 Thêm vào Giỏ hàng
+                            </a>
+                        </div>
+                    }
+                </div>
+            </div>
+        }
+
+    </div>
+</div>

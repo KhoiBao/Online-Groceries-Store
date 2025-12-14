@@ -1,0 +1,1001 @@
+﻿<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản Trị Tops Market</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background-color: #f9fafb;
+        }
+
+        .header {
+            background-color: #0D8344;
+            color: white;
+            padding: 1rem 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+            .header h1 {
+                font-size: 1.25rem;
+                font-weight: 600;
+            }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .container {
+            display: flex;
+            min-height: calc(100vh - 60px);
+        }
+
+        .sidebar {
+            width: 250px;
+            background-color: white;
+            border-right: 1px solid #e5e7eb;
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .menu-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem 1rem;
+            border-radius: 0.5rem;
+            margin-bottom: 0.5rem;
+            cursor: pointer;
+            text-decoration: none;
+            color: #374151;
+            transition: background-color 0.2s;
+            border: none;
+            background: none;
+            font-size: 1rem;
+            text-align: left;
+            width: 100%;
+        }
+
+            .menu-item:hover {
+                background-color: #f3f4f6;
+            }
+
+            .menu-item.active {
+                background-color: #d1fae5;
+                color: #047857;
+            }
+
+        .main-content {
+            flex: 1;
+            padding: 2rem;
+            overflow-y: auto;
+        }
+
+        /* Ẩn tất cả các trang trước khi chọn */
+        .page {
+            display: none;
+        }
+
+            .page.active {
+                display: block;
+            }
+
+        /* CSS chung */
+        h2 {
+            font-size: 1.5rem;
+            color: #111827;
+            margin-bottom: 1.5rem;
+        }
+
+        h3 {
+            font-size: 1.125rem;
+            color: #111827;
+            margin-bottom: 1rem;
+        }
+
+        /* CSS cho trang Báo cáo doanh thu */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .stat-card {
+            background-color: white;
+            border-radius: 0.5rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            padding: 1rem;
+        }
+
+        .stat-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 0.875rem;
+            color: #6b7280;
+        }
+
+        .stat-icon {
+            font-size: 1.25rem;
+        }
+
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .stat-description {
+            font-size: 0.75rem;
+            color: #9ca3af;
+        }
+
+        .chart-container {
+            background-color: white;
+            border-radius: 0.5rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .charts-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        /* CSS cho trang Hóa đơn nhập hàng */
+        .page-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .btn {
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            border: none;
+            cursor: pointer;
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: background-color 0.2s;
+        }
+
+        .btn-primary {
+            background-color: #0D8344;
+            color: white;
+        }
+
+            .btn-primary:hover {
+                background-color: #065f32;
+            }
+
+        .btn-secondary {
+            background-color: white;
+            color: #374151;
+            border: 1px solid #d1d5db;
+        }
+
+            .btn-secondary:hover {
+                background-color: #f3f4f6;
+            }
+
+        .form-container {
+            background-color: white;
+            border-radius: 0.5rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            font-size: 0.875rem;
+            margin-bottom: 0.5rem;
+            color: #374151;
+        }
+
+        input, select, textarea {
+            padding: 0.5rem 1rem;
+            border: 1px solid #d1d5db;
+            border-radius: 0.5rem;
+            font-size: 0.875rem;
+        }
+
+        .invoice-items {
+            margin: 1.5rem 0;
+        }
+
+        .invoice-item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .item-row {
+            display: grid;
+            grid-template-columns: 5fr 2fr 3fr 2fr;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+            align-items: center;
+        }
+
+        .btn-link {
+            background: none;
+            border: none;
+            color: #0D8344;
+            cursor: pointer;
+            font-size: 0.875rem;
+        }
+
+            .btn-link:hover {
+                color: #065f32;
+            }
+
+        .btn-delete {
+            color: #dc2626;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 0.875rem;
+        }
+
+        .total-section {
+            border-top: 1px solid #e5e7eb;
+            padding-top: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .total-amount {
+            font-size: 1.125rem;
+            color: #dc2626;
+            font-weight: 600;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .search-box {
+            position: relative;
+        }
+
+            .search-box input {
+                padding-left: 2.5rem;
+            }
+
+        .search-icon {
+            position: absolute;
+            left: 0.75rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #9ca3af;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.25rem;
+            font-size: 0.75rem;
+        }
+
+        .status-completed {
+            background-color: #d1fae5;
+            color: #047857;
+        }
+
+        .status-pending {
+            background-color: #fef3c7;
+            color: #92400e;
+        }
+
+        /* CSS cho trang Thêm sản phẩm */
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+
+        .form-group.full-width {
+            grid-column: span 2;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: #0D8344;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .image-upload {
+            border: 2px dashed #d1d5db;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .image-preview {
+            width: 100%;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 0.5rem;
+        }
+
+        .product-image {
+            width: 48px;
+            height: 48px;
+            object-fit: cover;
+            border-radius: 0.25rem;
+        }
+
+        /* CSS cho table chung */
+        .table-container {
+            background-color: white;
+            border-radius: 0.5rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .table-header {
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        thead {
+            background-color: #f9fafb;
+        }
+
+        th {
+            padding: 0.75rem 1rem;
+            text-align: left;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: #374151;
+        }
+
+        td {
+            padding: 0.75rem 1rem;
+            font-size: 0.875rem;
+            border-top: 1px solid #e5e7eb;
+        }
+
+        tbody tr:hover {
+            background-color: #f9fafb;
+        }
+
+        .price {
+            color: #dc2626;
+            font-weight: 500;
+        }
+
+        .trend-up {
+            color: #10b981;
+        }
+
+        .category-dot {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 0.5rem;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        /* Responsive */
+        media (max-width: 1200px) {
+            .stats-grid
+
+        {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .charts-grid {
+            grid-template-columns: 1fr;
+        }
+
+        }
+
+        media (max-width: 768px) {
+            .container
+
+        {
+            flex-direction: column;
+        }
+
+        .sidebar {
+            width: 100%;
+            border-right: none;
+            border-bottom: 1px solid #e5e7eb;
+            flex-direction: row;
+            justify-content: space-around;
+            padding: 0.5rem;
+        }
+
+        .menu-item {
+            flex-direction: column;
+            padding: 0.5rem;
+            font-size: 0.75rem;
+            text-align: center;
+        }
+
+            .menu-item span:first-child {
+                margin-bottom: 0.25rem;
+            }
+
+        .main-content {
+            padding: 1rem;
+        }
+
+        .form-row,
+        .form-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .form-group.full-width {
+            grid-column: span 1;
+        }
+
+        .item-row {
+            grid-template-columns: 1fr;
+            gap: 0.25rem;
+        }
+
+        .page-header {
+            flex-direction: column;
+            gap: 1rem;
+            align-items: flex-start;
+        }
+
+        .stats-grid {
+            grid-template-columns: 1fr;
+        }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <h1>CHỢ NHÓM 14</h1>
+        <div class="header-right">
+            <span>Admin</span>
+        </div>
+    </header>
+
+    <div class="container">
+        <aside class="sidebar">
+            <button class="menu-item" data-page="product-page">
+                <span>📦</span>
+                <span>Thêm Sản Phẩm</span>
+            </button>
+            <button class="menu-item" data-page="invoice-page">
+                <span>📄</span>
+                <span>Hóa Đơn Nhập Hàng</span>
+            </button>
+            <button class="menu-item active" data-page="report-page">
+                <span>📊</span>
+                <span>Báo Cáo Doanh Thu</span>
+            </button>
+        </aside>
+
+        <main class="main-content">
+            <!-- Trang Báo cáo doanh thu -->
+            <div id="report-page" class="page active">
+                <h2>Báo Cáo Doanh Thu</h2>
+
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-header">
+                            <span class="stat-label">Tổng Doanh Thu</span>
+                            <span class="stat-icon">💰</span>
+                        </div>
+                        <div class="stat-value" style="color: #10b981;">0₫</div>
+                        <div class="stat-description">Năm 2024</div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-header">
+                            <span class="stat-label">Tổng Đơn Hàng</span>
+                            <span class="stat-icon">🛒</span>
+                        </div>
+                        <div class="stat-value" style="color: #3b82f6;">0</div>
+                        <div class="stat-description">Năm 2024</div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-header">
+                            <span class="stat-label">Giá Trị TB/Đơn</span>
+                            <span class="stat-icon">📦</span>
+                        </div>
+                        <div class="stat-value" style="color: #f59e0b;">0₫</div>
+                        <div class="stat-description">Trung bình</div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-header">
+                            <span class="stat-label">Tăng Trưởng</span>
+                            <span class="stat-icon">📈</span>
+                        </div>
+                        <div class="stat-value" style="color: #8b5cf6;">0%</div>
+                        <div class="stat-description">So với năm trước</div>
+                    </div>
+                </div>
+
+                <div class="chart-container">
+                    <h3 class="chart-title">Doanh Thu Theo Tháng</h3>
+                    <canvas id="revenueChart" height="80"></canvas>
+                </div>
+
+                <div class="charts-grid">
+                    <div class="chart-container">
+                        <h3 class="chart-title">Xu Hướng Đơn Hàng</h3>
+                        <canvas id="ordersChart"></canvas>
+                    </div>
+
+                    <div class="chart-container">
+                        <h3 class="chart-title">Doanh Thu Theo Danh Mục</h3>
+                        <canvas id="categoryChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="table-container">
+                    <div class="table-header">
+                        <h3>Chi Tiết Doanh Thu Theo Danh Mục</h3>
+                    </div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Danh mục</th>
+                                <th>Doanh thu</th>
+                                <th>Tỷ trọng</th>
+                                <th>Xu hướng</th>
+                            </tr>
+                        </thead>
+                        <tbody id="categoryTableBody">
+                            <tr>
+                                <td colspan="4" style="text-align: center; padding: 2rem; color: #6b7280;">
+                                    Không có dữ liệu
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Trang Hóa đơn nhập hàng -->
+            <div id="invoice-page" class="page">
+                <div class="page-header">
+                    <h2>Hóa Đơn Nhập Hàng</h2>
+                    <button class="btn btn-primary" id="newInvoiceBtn">➕ Tạo Hóa Đơn Mới</button>
+                </div>
+
+                <div class="form-container hidden" id="invoiceForm">
+                    <form id="invoiceFormElement">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Số Hóa Đơn *</label>
+                                <input type="text" id="invoiceNumber" placeholder="NK2024XXX" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Nhà Cung Cấp *</label>
+                                <input type="text" id="supplier" placeholder="Tên nhà cung cấp" required>
+                            </div>
+                        </div>
+
+                        <div class="invoice-items">
+                            <div class="invoice-item-header">
+                                <label>Chi Tiết Sản Phẩm</label>
+                                <button type="button" class="btn-link" id="addItemBtn">➕ Thêm sản phẩm</button>
+                            </div>
+                            <div id="itemsContainer">
+                                <div class="item-row">
+                                    <input type="text" placeholder="Tên sản phẩm" class="item-name" required>
+                                    <input type="number" placeholder="Số lượng" class="item-quantity" required>
+                                    <input type="number" placeholder="Đơn giá" class="item-price" required>
+                                    <span class="item-total">0₫</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="total-section">
+                            <div>
+                                Tổng tiền: <span class="total-amount" id="totalAmount">0₫</span>
+                            </div>
+                            <div class="button-group">
+                                <button type="button" class="btn btn-secondary" id="cancelInvoiceBtn">Hủy</button>
+                                <button type="submit" class="btn btn-primary">Lưu Hóa Đơn</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="table-container">
+                    <div class="table-header">
+                        <h3>Danh Sách Hóa Đơn</h3>
+                        <div class="search-box">
+                            <span class="search-icon">🔍</span>
+                            <input type="text" id="searchInput" placeholder="Tìm kiếm hóa đơn...">
+                        </div>
+                    </div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Số HĐ</th>
+                                <th>Nhà cung cấp</th>
+                                <th>Ngày nhập</th>
+                                <th>Sản phẩm</th>
+                                <th>Tổng tiền</th>
+                                <th>Trạng thái</th>
+                            </tr>
+                        </thead>
+                        <tbody id="invoiceTableBody">
+                            <tr>
+                                <td colspan="6" style="text-align: center; padding: 2rem; color: #6b7280;">
+                                    Chưa có hóa đơn nào
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Trang Thêm sản phẩm -->
+            <div id="product-page" class="page">
+                <h2>Thêm Sản Phẩm Mới</h2>
+
+                <div class="form-container">
+                    <form id="productForm">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label>Tên Sản Phẩm *</label>
+                                <input type="text" id="productName" placeholder="Nhập tên sản phẩm" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Danh Mục *</label>
+                                <select id="category" required>
+                                    <option value="">Chọn danh mục</option>
+                                    <option>Thực phẩm Tươi Sống</option>
+                                    <option>Thực Phẩm Sơ Chế</option>
+                                    <option>Thực Uống Các Loại</option>
+                                    <option>Thực Phẩm Nấu Sẵn</option>
+                                    <option>Rau Củ Quả</option>
+                                    <option>Thịt, Cá, Hải Sản</option>
+                                    <option>Sữa và Sản Phẩm Từ Sữa</option>
+                                    <option>Bánh Kẹo</option>
+                                    <option>Dầu Ăn, Gia Vị</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Giá Bán (₫) *</label>
+                                <input type="number" id="price" placeholder="0" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Giá Gốc (₫)</label>
+                                <input type="number" id="originalPrice" placeholder="0">
+                            </div>
+
+                            <div class="form-group">
+                                <label>Số Lượng Tồn Kho *</label>
+                                <input type="number" id="stock" placeholder="0" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Hình Ảnh</label>
+                                <div class="image-upload" id="imageUpload">
+                                    <div id="uploadPlaceholder">
+                                        <p>📤</p>
+                                        <p>Tải ảnh lên</p>
+                                    </div>
+                                    <img id="imagePreview" class="image-preview hidden" src="" alt="Preview">
+                                    <input type="file" id="imageInput" accept="image/*" class="hidden">
+                                </div>
+                            </div>
+
+                            <div class="form-group full-width">
+                                <label>Mô Tả</label>
+                                <textarea id="description" placeholder="Nhập mô tả sản phẩm"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="button-group">
+                            <button type="submit" class="btn btn-primary">➕ Thêm Sản Phẩm</button>
+                            <button type="button" class="btn btn-secondary" id="cancelProductBtn">Hủy</button>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="table-container" id="productTableContainer" style="display: none;">
+                    <div class="table-header">
+                        <h3>Danh Sách Sản Phẩm (<span id="productCount">0</span>)</h3>
+                    </div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Hình ảnh</th>
+                                <th>Tên sản phẩm</th>
+                                <th>Danh mục</th>
+                                <th>Giá bán</th>
+                                <th>Tồn kho</th>
+                                <th>Ngày tạo</th>
+                                <th>Thao tác</th>
+                            </tr>
+                        </thead>
+                        <tbody id="productTableBody">
+                            <tr>
+                                <td colspan="7" style="text-align: center; padding: 2rem; color: #6b7280;">
+                                    Chưa có sản phẩm nào
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // ============================================
+        // QUẢN LÝ CHUYỂN ĐỔI TRANG
+        // ============================================
+
+        const menuItems = document.querySelectorAll('.menu-item');
+        const pages = document.querySelectorAll('.page');
+
+        menuItems.forEach(item => {
+            item.addEventListener('click', () => {
+                // Xóa lớp active từ tất cả menu items
+                menuItems.forEach(i => i.classList.remove('active'));
+                // Thêm lớp active vào menu item được click
+                item.classList.add('active');
+
+                // Ẩn tất cả các trang
+                pages.forEach(page => page.classList.remove('active'));
+
+                // Hiển thị trang tương ứng
+                const pageId = item.getAttribute('data-page');
+                document.getElementById(pageId).classList.add('active');
+            });
+        });
+
+        // ============================================
+        // KHỞI TẠO BIỂU ĐỒ TRANG BÁO CÁO
+        // ============================================
+
+        function initReportCharts() {
+            // Revenue Chart
+            const revenueCtx = document.getElementById('revenueChart').getContext('2d');
+            new Chart(revenueCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['T1', 'T2', 'T3', 'T4', 'T5', 'T6', 'T7', 'T8', 'T9', 'T10', 'T11', 'T12'],
+                    datasets: [{
+                        label: 'Doanh thu (triệu ₫)',
+                        data: [],
+                        backgroundColor: '#10B981',
+                        borderRadius: 4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+
+            // Orders Chart
+            const ordersCtx = document.getElementById('ordersChart').getContext('2d');
+            new Chart(ordersCtx, {
+                type: 'line',
+                data: {
+                    labels: ['T1', 'T2', 'T3', 'T4', 'T5', 'T6', 'T7', 'T8', 'T9', 'T10', 'T11', 'T12'],
+                    datasets: [{
+                        label: 'Số đơn hàng',
+                        data: [],
+                        borderColor: '#3B82F6',
+                        backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                        tension: 0.4,
+                        fill: true
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+
+            // Category Chart
+            const categoryCtx = document.getElementById('categoryChart').getContext('2d');
+            new Chart(categoryCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: [],
+                    datasets: [{
+                        data: [],
+                        backgroundColor: ['#10B981', '#3B82F6', '#F59E0B', '#EF4444', '#8B5CF6']
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: true,
+                    plugins: {
+                        legend: {
+                            position: 'right'
+                        }
+                    }
+                }
+            });
+        }
+
+        // Khởi tạo biểu đồ khi trang được tải
+        document.addEventListener('DOMContentLoaded', function() {
+            initReportCharts();
+        });
+
+        // ============================================
+        // CHỨC NĂNG CƠ BẢN TRANG HÓA ĐƠN
+        // ============================================
+
+        const newInvoiceBtn = document.getElementById('newInvoiceBtn');
+        const invoiceForm = document.getElementById('invoiceForm');
+        const cancelInvoiceBtn = document.getElementById('cancelInvoiceBtn');
+        const addItemBtn = document.getElementById('addItemBtn');
+        const itemsContainer = document.getElementById('itemsContainer');
+        const totalAmount = document.getElementById('totalAmount');
+
+        newInvoiceBtn.addEventListener('click', () => {
+            invoiceForm.classList.remove('hidden');
+        });
+
+        cancelInvoiceBtn.addEventListener('click', () => {
+            invoiceForm.classList.add('hidden');
+            document.getElementById('invoiceFormElement').reset();
+            resetInvoiceItems();
+        });
+
+        addItemBtn.addEventListener('click', () => {
+            const newRow = document.createElement('div');
+            newRow.className = 'item-row';
+            newRow.innerHTML = `
+                <input type="text" placeholder="Tên sản phẩm" class="item-name" required>
+                <input type="number" placeholder="Số lượng" class="item-quantity" required>
+                <input type="number" placeholder="Đơn giá" class="item-price" required>
+                <span class="item-total">
+                    0₫
+                    <button type="button" class="btn-delete" onclick="this.parentElement.parentElement.remove(); updateInvoiceTotal()">Xóa</button>
+                </span>
+            `;
+            itemsContainer.appendChild(newRow);
+        });
+
+        itemsContainer.addEventListener('input', (e) => {
+            if (e.target.classList.contains('item-quantity') || e.target.classList.contains('item-price')) {
+                updateInvoiceTotal();
+            }
+        });
+
+        function updateInvoiceTotal() {
+            const rows = itemsContainer.querySelectorAll('.item-row');
+            let total = 0;
+
+            rows.forEach(row => {
+                const quantity = parseInt(row.querySelector('.item-quantity').value) || 0;
+                const price = parseInt(row.querySelector('.item-price').value) || 0;
+                const itemTotal = quantity * price;
+
+                const totalSpan = row.querySelector('.item-total');
+                if (totalSpan.querySelector('.btn-delete')) {
+                    totalSpan.childNodes[0].textContent = itemTotal.toLocaleString('vi-VN') + '₫ ';
+                } else {
+                    totalSpan.textContent = itemTotal.toLocaleString('vi-VN') + '₫';
+                }
+
+                total += itemTotal;
+            });
+
+            totalAmount.textContent = total.toLocaleString('vi-VN') + '₫';
+        }
+
+        function resetInvoiceItems() {
+            itemsContainer.innerHTML = `
+                <div class="item-row">
+                    <input type="text" placeholder="Tên sản phẩm" class="item-name" required>
+                    <input type="number" placeholder="Số lượng" class="item-quantity" required>
+                    <input type="number" placeholder="Đơn giá" class="item-price" required>
+                    <span class="item-total">0₫</span>
+                </div>
+            `;
+            updateInvoiceTotal();
+        }
+
+        // ============================================
+        // CHỨC NĂNG CƠ BẢN TRANG SẢN PHẨM
+        // ============================================
+
+        const imageUpload = document.getElementById('imageUpload');
+        const imageInput = document.getElementById('imageInput');
+        const imagePreview = document.getElementById('imagePreview');
+        const uploadPlaceholder = document.getElementById('uploadPlaceholder');
+        const cancelProductBtn = document.getElementById('cancelProductBtn');
+
+        imageUpload.addEventListener('click', () => {
+            imageInput.click();
+        });
+
+        imageInput.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    imagePreview.src = e.target.result;
+                    imagePreview.classList.remove('hidden');
+                    uploadPlaceholder.classList.add('hidden');
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        cancelProductBtn.addEventListener('click', () => {
+            document.getElementById('productForm').reset();
+            imagePreview.src = '';
+            imagePreview.classList.add('hidden');
+            uploadPlaceholder.classList.remove('hidden');
+        });
+    </script>
+</body>
+</html>

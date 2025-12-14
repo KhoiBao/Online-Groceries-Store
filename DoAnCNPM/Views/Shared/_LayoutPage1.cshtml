@@ -1,0 +1,339 @@
+﻿@*
+*@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    @*<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>*@
+
+
+</head>
+<body>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial,Helvetica,sans-serif;
+            background: #f5f5f5
+        }
+
+        .container {
+            width: 1200px;
+            margin: auto
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit
+        }
+
+        /* ===== HEADER ===== */
+        .header {
+            background: #0a8f3c;
+            color: #fff
+        }
+
+        .header-bar {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 10px 0
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: bold;
+            color: #ffe600;
+            font-size: 18px
+        }
+
+        .category-btn {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: #087a34;
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-size: 14px;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+
+        .search {
+            flex: 1;
+            display: flex
+        }
+
+            .search input {
+                flex: 1;
+                padding: 9px 12px;
+                border: none;
+                border-radius: 20px 0 0 20px;
+                outline: none
+            }
+
+            .search button {
+                padding: 0 15px;
+                border: none;
+                background: #fff;
+                border-radius: 0 20px 20px 0;
+                cursor: pointer
+            }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 14px
+        }
+
+        .location {
+            background: #087a34;
+            padding: 8px 12px;
+            border-radius: 20px;
+            white-space: nowrap
+        }
+
+        .icon {
+            font-size: 18px
+        }
+
+        /* ===== BODY ===== */
+        .body-content {
+            min-height: 600px;
+            padding: 15px 0
+        }
+        .cart-icon-container {
+            display: flex;
+            align-items: center; /* Căn giữa theo chiều dọc */
+            margin-left: 20px;
+        }
+
+        /* Định dạng chung cho liên kết */
+        .cart-link {
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            padding: 8px 15px;
+            border: 2px solid white; /* Viền trắng nổi bật */
+            border-radius: 20px; /* Bo góc mềm mại */
+            color: white; /* Chữ màu trắng */
+            font-weight: bold;
+            transition: background-color 0.3s, border-color 0.3s;
+            font-size: 14px;
+        }
+
+            /* Hiệu ứng khi di chuột vào */
+            .cart-link:hover {
+                background-color: rgba(255, 255, 255, 0.2); /* Nền trong suốt mờ khi hover */
+                border-color: #ffcc00; /* Đổi màu viền sang vàng nổi bật */
+                color: white; /* Giữ chữ màu trắng */
+            }
+
+        /* Biểu tượng (Icon) */
+        .icon-symbol {
+            font-size: 18px;
+            margin-right: 8px;
+        }
+
+        /* Chữ */
+        .link-text {
+            letter-spacing: 0.5px; /* Tăng khoảng cách chữ cho dễ đọc */
+        }
+        /* ===== FOOTER (để trống hoặc dùng sau) ===== */
+    </style>
+
+    <!-- ================= HEADER ================= -->
+    <div class="header">
+        <div class="container header-bar">
+
+            <div class="logo">
+                <a href="@Url.Action("Index", "Home")">
+                    Cái chợ <b>14</b>
+                </a>
+            </div>
+
+
+            @*<div class="search">
+            <input type="text" placeholder="nhập thứ bạn muốn tìm" />
+            <button>🔍</button>
+        </div>*@
+            <form class="search" action="@Url.Action("Search", "Home")" method="get">
+                <input type="text"
+                       name="keyword"
+                       placeholder="Tìm sản phẩm..."
+                       style="padding:6px; width:220px;" />
+                <button type="submit">🔍</button>
+            </form>
+
+
+            @*<div class="header-right">
+            <div class="icon">🛒</div>
+            <div>👤 Đăng nhập</div>
+        </div>*@
+        <div class="header-right">
+            <div class="cart-icon-container">
+                <a href="@Url.Action("GioHang", "Home")" class="cart-link">
+                    <span class="icon-symbol">🛒</span>
+                    <span class="link-text">GIỎ HÀNG</span>
+                </a>
+            </div>
+
+            @if (Session["User"] != null)
+            {
+                // Đã đăng nhập: Lấy thông tin Tên người dùng và hiển thị menu
+                var account = Session["User"] as DoAnCNPM.Models.TAIKHOAN;
+
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        👤 Xin chào, **@account.USERNAME**
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+
+                        @*<a class="dropdown-item" href="@Url.Action("ThongTinCaNhan", "User")">Thông tin cá nhân</a>*@
+
+                        @if (account.MAROLE == "ADMIN")
+                        {
+                            <a class="dropdown-item" href="@Url.Action("Index", "Admin")">Quản trị hệ thống</a>
+                        }
+
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="@Url.Action("Logout", "Home")">Đăng xuất</a>
+                    </div>
+                </div>
+            }
+            else
+            {
+                // Chưa đăng nhập: Hiển thị link Đăng nhập
+                <div class="login-link-container">
+                    <a href="@Url.Action("Login", "Home")" class="auth-link">
+                        <span class="icon-symbol">👤</span>
+                        <span class="link-text">ĐĂNG NHẬP</span>
+                    </a>
+                </div>
+
+                <style>
+                    /* CSS TÙY CHỈNH CHO ICON ĐĂNG NHẬP */
+
+                    /* Container giúp căn chỉnh với các phần tử khác trong header */
+                    .login-link-container {
+                        display: flex;
+                        align-items: center;
+                        margin-left: 15px; /* Khoảng cách với Giỏ hàng */
+                    }
+
+                    /* Định dạng chung cho liên kết */
+                    .auth-link {
+                        text-decoration: none;
+                        display: flex;
+                        align-items: center;
+                        padding: 8px 15px;
+                        border: 2px solid white; /* Viền trắng nổi bật */
+                        border-radius: 20px; /* Bo góc mềm mại */
+                        color: white; /* Chữ màu trắng */
+                        font-weight: bold;
+                        transition: background-color 0.3s, border-color 0.3s;
+                        font-size: 14px;
+                        /* Đảm bảo link không bị mã hóa khi in đậm */
+                        white-space: nowrap;
+                    }
+
+                        /* Hiệu ứng khi di chuột vào */
+                        .auth-link:hover {
+                            background-color: rgba(255, 255, 255, 0.2); /* Nền trong suốt mờ khi hover */
+                            border-color: #ffcc00; /* Đổi màu viền sang vàng nổi bật */
+                            color: white;
+                        }
+
+                        /* Biểu tượng (Icon) */
+                        .auth-link .icon-symbol {
+                            font-size: 18px;
+                            margin-right: 8px;
+                        }
+
+                        /* Chữ */
+                        .auth-link .link-text {
+                            letter-spacing: 0.5px;
+                        }
+                </style>
+            }
+        </div>
+        </div>
+    </div>
+
+    <!-- ================= BODY ================= -->
+    <div class="container body-content">
+        @RenderBody()
+    </div>
+
+    <!-- ================= FOOTER ================= -->
+    <div class="footer">
+        <div class="container footer-top">
+            <div>
+                <b>Về Bách Hóa Xanh</b><br />
+                Giới thiệu<br />
+                Hệ thống cửa hàng<br />
+                Tuyển dụng
+            </div>
+            <div>
+                <b>Hỗ trợ khách hàng</b><br />
+                Chính sách đổi trả<br />
+                Hướng dẫn mua hàng<br />
+                Câu hỏi thường gặp
+            </div>
+            <div>
+                <b>Chính sách</b><br />
+                Giao hàng<br />
+                Thanh toán<br />
+                Bảo mật thông tin
+            </div>
+            <div>
+                <b>Liên hệ</b><br />
+                Hotline: 1900 xxxx<br />
+                Email: support@bhx.vn
+            </div>
+        </div>
+        <div class="footer-bottom">
+            © 2025 Bách Hóa Xanh (Clone – phục vụ học tập)
+        </div>
+    </div>
+
+    <style>
+        .footer {
+            background: #fff;
+            border-top: 1px solid #ddd;
+            margin-top: 30px
+        }
+
+        .footer-top {
+            display: grid;
+            grid-template-columns: repeat(4,1fr);
+            gap: 20px;
+            padding: 25px 0;
+            font-size: 14px;
+            color: #444
+        }
+
+            .footer-top b {
+                display: block;
+                margin-bottom: 6px
+            }
+
+        .footer-bottom {
+            text-align: center;
+            padding: 10px 0;
+            background: #f0f0f0;
+            font-size: 13px;
+            color: #666
+        }
+    </style>
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

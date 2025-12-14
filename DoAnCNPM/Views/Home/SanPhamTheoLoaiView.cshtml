@@ -1,0 +1,90 @@
+﻿@using DoAnCNPM.Models
+@model List<SANPHAM>
+
+@{
+    ViewBag.Title = ViewBag.TenLoai;
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+<div class="content-container">
+    <h2>Sản phẩm: @ViewBag.TenLoai</h2>
+
+    @if (ViewBag.Message != null)
+    {
+        <p class="alert-info">@ViewBag.Message</p>
+    }
+    else
+    {
+        <div class="product-grid">
+            @foreach (var sp in Model)
+            {
+                // Đây là block hiển thị thông tin từng sản phẩm
+                <div class="product-item">
+                    <img src="@Url.Content("~/Images/" + sp.HINH)" alt="@sp.TENSP" class="product-image" />
+                    <h3 class="product-name">@sp.TENSP</h3>
+                    <p class="product-price">@string.Format("{0:N0}đ", sp.GIABAN)</p>
+
+                    <a href="@Url.Action("Details", "Home", new { id = sp.MASP })" class="btn-detail">Xem chi tiết</a>
+
+                    <a href="@Url.Action("ThemGioHang", "Home", new { id = sp.MASP, strURL = Request.Url.ToString() })" class="btn-add-to-cart">
+                        Thêm vào giỏ
+                    </a>
+                </div>
+            }
+        </div>
+    }
+</div>
+
+<style>
+    /* CSS cơ bản cho lưới sản phẩm */
+    .content-container {
+        padding: 20px;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .product-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 20px;
+        margin-top: 20px;
+    }
+
+    .product-item {
+        border: 1px solid #ddd;
+        padding: 15px;
+        text-align: center;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+
+    .product-image {
+        max-height: 150px;
+        width: auto;
+        margin-bottom: 10px;
+    }
+
+    .product-price {
+        color: #e44d26;
+        font-weight: bold;
+        margin: 5px 0;
+    }
+
+    .btn-add-to-cart {
+        /* Dùng lại CSS màu xanh lá của bạn */
+        background-color: #008000;
+        color: white;
+        text-decoration: none;
+        padding: 8px 15px;
+        border-radius: 4px;
+        display: block;
+        margin-top: 10px;
+    }
+
+    .btn-detail {
+        color: #008000;
+        text-decoration: none;
+        display: block;
+        margin-bottom: 5px;
+    }
+</style>
