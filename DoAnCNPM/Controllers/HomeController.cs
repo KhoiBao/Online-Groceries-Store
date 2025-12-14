@@ -35,5 +35,19 @@ namespace DoAnCNPM.Controllers
             var listsp = db.SANPHAMs.ToList();
             return View(listsp);
         }
+
+        public ActionResult admin()
+        {
+            ViewBag.Message = "Your contact page.";
+
+            return View();
+        }
+
+        public ActionResult GioHang()
+        {
+            ViewBag.Message = "Your contact page.";
+
+            return View();
+        }
     }
 }
