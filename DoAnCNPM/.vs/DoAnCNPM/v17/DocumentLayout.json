@@ -3,52 +3,16 @@
   "WorkspaceRootPath": "K:\\Online-Groceries-Store\\DoAnCNPM\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{D9224592-ACFF-4B8E-8247-2018EA4A04B0}|DoAnCNPM.csproj|k:\\online-groceries-store\\doancnpm\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
-      "RelativeMoniker": "D:0:0:{D9224592-ACFF-4B8E-8247-2018EA4A04B0}|DoAnCNPM.csproj|solutionrelative:web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D9224592-ACFF-4B8E-8247-2018EA4A04B0}|DoAnCNPM.csproj|K:\\Online-Groceries-Store\\DoAnCNPM\\Controllers\\HomeController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D9224592-ACFF-4B8E-8247-2018EA4A04B0}|DoAnCNPM.csproj|solutionrelative:Controllers\\HomeController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{D9224592-ACFF-4B8E-8247-2018EA4A04B0}|DoAnCNPM.csproj|K:\\Online-Groceries-Store\\DoAnCNPM\\Views\\Shared\\_LayoutPage1.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{D9224592-ACFF-4B8E-8247-2018EA4A04B0}|DoAnCNPM.csproj|solutionrelative:Views\\Shared\\_LayoutPage1.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D9224592-ACFF-4B8E-8247-2018EA4A04B0}|DoAnCNPM.csproj|K:\\Online-Groceries-Store\\DoAnCNPM\\Views\\Home\\SanPhamTheoLoaiView.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{D9224592-ACFF-4B8E-8247-2018EA4A04B0}|DoAnCNPM.csproj|solutionrelative:Views\\Home\\SanPhamTheoLoaiView.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D9224592-ACFF-4B8E-8247-2018EA4A04B0}|DoAnCNPM.csproj|K:\\Online-Groceries-Store\\DoAnCNPM\\Views\\Home\\SanPham.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{D9224592-ACFF-4B8E-8247-2018EA4A04B0}|DoAnCNPM.csproj|solutionrelative:Views\\Home\\SanPham.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D9224592-ACFF-4B8E-8247-2018EA4A04B0}|DoAnCNPM.csproj|K:\\Online-Groceries-Store\\DoAnCNPM\\Views\\Home\\Index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{D9224592-ACFF-4B8E-8247-2018EA4A04B0}|DoAnCNPM.csproj|solutionrelative:Views\\Home\\Index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D9224592-ACFF-4B8E-8247-2018EA4A04B0}|DoAnCNPM.csproj|K:\\Online-Groceries-Store\\DoAnCNPM\\Views\\Home\\Details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{D9224592-ACFF-4B8E-8247-2018EA4A04B0}|DoAnCNPM.csproj|solutionrelative:Views\\Home\\Details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D9224592-ACFF-4B8E-8247-2018EA4A04B0}|DoAnCNPM.csproj|K:\\Online-Groceries-Store\\DoAnCNPM\\Views\\Home\\Search.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{D9224592-ACFF-4B8E-8247-2018EA4A04B0}|DoAnCNPM.csproj|solutionrelative:Views\\Home\\Search.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D9224592-ACFF-4B8E-8247-2018EA4A04B0}|DoAnCNPM.csproj|K:\\Online-Groceries-Store\\DoAnCNPM\\Views\\Home\\GioHang.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{D9224592-ACFF-4B8E-8247-2018EA4A04B0}|DoAnCNPM.csproj|solutionrelative:Views\\Home\\GioHang.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D9224592-ACFF-4B8E-8247-2018EA4A04B0}|DoAnCNPM.csproj|K:\\Online-Groceries-Store\\DoAnCNPM\\Models\\GioHang.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D9224592-ACFF-4B8E-8247-2018EA4A04B0}|DoAnCNPM.csproj|solutionrelative:Models\\GioHang.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D9224592-ACFF-4B8E-8247-2018EA4A04B0}|DoAnCNPM.csproj|K:\\Online-Groceries-Store\\DoAnCNPM\\Views\\Shared\\Error.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{D9224592-ACFF-4B8E-8247-2018EA4A04B0}|DoAnCNPM.csproj|solutionrelative:Views\\Shared\\Error.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{D9224592-ACFF-4B8E-8247-2018EA4A04B0}|DoAnCNPM.csproj|K:\\Online-Groceries-Store\\DoAnCNPM\\Views\\Home\\Login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{D9224592-ACFF-4B8E-8247-2018EA4A04B0}|DoAnCNPM.csproj|solutionrelative:Views\\Home\\Login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D9224592-ACFF-4B8E-8247-2018EA4A04B0}|DoAnCNPM.csproj|k:\\online-groceries-store\\doancnpm\\views\\login\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{D9224592-ACFF-4B8E-8247-2018EA4A04B0}|DoAnCNPM.csproj|solutionrelative:views\\login\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{D9224592-ACFF-4B8E-8247-2018EA4A04B0}|DoAnCNPM.csproj|K:\\Online-Groceries-Store\\DoAnCNPM\\Models\\TAIKHOAN.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -66,7 +30,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 6,
           "Children": [
             {
               "$type": "Bookmark",
@@ -90,163 +54,46 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Web.config",
-              "DocumentMoniker": "K:\\Online-Groceries-Store\\DoAnCNPM\\Web.config",
-              "RelativeDocumentMoniker": "Web.config",
-              "ToolTip": "K:\\Online-Groceries-Store\\DoAnCNPM\\Web.config",
-              "RelativeToolTip": "Web.config",
-              "ViewState": "AgIAACoAAAAAAAAAAAAAAEAAAAD5AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
-              "WhenOpened": "2025-12-14T08:33:10.162Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "SanPhamTheoLoaiView.cshtml",
-              "DocumentMoniker": "K:\\Online-Groceries-Store\\DoAnCNPM\\Views\\Home\\SanPhamTheoLoaiView.cshtml",
-              "RelativeDocumentMoniker": "Views\\Home\\SanPhamTheoLoaiView.cshtml",
-              "ToolTip": "K:\\Online-Groceries-Store\\DoAnCNPM\\Views\\Home\\SanPhamTheoLoaiView.cshtml",
-              "RelativeToolTip": "Views\\Home\\SanPhamTheoLoaiView.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAFkAAAAIAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-12-14T07:59:13.027Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "SanPham.cshtml",
-              "DocumentMoniker": "K:\\Online-Groceries-Store\\DoAnCNPM\\Views\\Home\\SanPham.cshtml",
-              "RelativeDocumentMoniker": "Views\\Home\\SanPham.cshtml",
-              "ToolTip": "K:\\Online-Groceries-Store\\DoAnCNPM\\Views\\Home\\SanPham.cshtml",
-              "RelativeToolTip": "Views\\Home\\SanPham.cshtml",
-              "ViewState": "AgIAADYAAAAAAAAAAAAAAAUAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-12-14T07:59:13.075Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 2,
+              "Title": "Login.cshtml",
+              "DocumentMoniker": "K:\\Online-Groceries-Store\\DoAnCNPM\\Views\\Login\\Login.cshtml",
+              "RelativeDocumentMoniker": "Views\\Login\\Login.cshtml",
+              "ToolTip": "K:\\Online-Groceries-Store\\DoAnCNPM\\Views\\Login\\Login.cshtml",
+              "RelativeToolTip": "Views\\Login\\Login.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAACAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-12-14T09:20:56.96Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
               "Title": "_LayoutPage1.cshtml",
               "DocumentMoniker": "K:\\Online-Groceries-Store\\DoAnCNPM\\Views\\Shared\\_LayoutPage1.cshtml",
               "RelativeDocumentMoniker": "Views\\Shared\\_LayoutPage1.cshtml",
               "ToolTip": "K:\\Online-Groceries-Store\\DoAnCNPM\\Views\\Shared\\_LayoutPage1.cshtml",
               "RelativeToolTip": "Views\\Shared\\_LayoutPage1.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAPAAAAAAAAAA==",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAIAAAAPAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-12-14T07:59:13.075Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "K:\\Online-Groceries-Store\\DoAnCNPM\\Views\\Home\\Index.cshtml",
-              "RelativeDocumentMoniker": "Views\\Home\\Index.cshtml",
-              "ToolTip": "K:\\Online-Groceries-Store\\DoAnCNPM\\Views\\Home\\Index.cshtml",
-              "RelativeToolTip": "Views\\Home\\Index.cshtml",
-              "ViewState": "AgIAANMAAAAAAAAAAAAAAOEAAAAuAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-12-14T07:59:13.091Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "HomeController.cs",
-              "DocumentMoniker": "K:\\Online-Groceries-Store\\DoAnCNPM\\Controllers\\HomeController.cs",
-              "RelativeDocumentMoniker": "Controllers\\HomeController.cs",
-              "ToolTip": "K:\\Online-Groceries-Store\\DoAnCNPM\\Controllers\\HomeController.cs",
-              "RelativeToolTip": "Controllers\\HomeController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAsAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-14T07:59:13.093Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "Details.cshtml",
-              "DocumentMoniker": "K:\\Online-Groceries-Store\\DoAnCNPM\\Views\\Home\\Details.cshtml",
-              "RelativeDocumentMoniker": "Views\\Home\\Details.cshtml",
-              "ToolTip": "K:\\Online-Groceries-Store\\DoAnCNPM\\Views\\Home\\Details.cshtml",
-              "RelativeToolTip": "Views\\Home\\Details.cshtml",
-              "ViewState": "AgIAAHIAAAAAAAAAAAAmwIsAAAALAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-12-14T07:59:13.095Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "Search.cshtml",
-              "DocumentMoniker": "K:\\Online-Groceries-Store\\DoAnCNPM\\Views\\Home\\Search.cshtml",
-              "RelativeDocumentMoniker": "Views\\Home\\Search.cshtml",
-              "ToolTip": "K:\\Online-Groceries-Store\\DoAnCNPM\\Views\\Home\\Search.cshtml",
-              "RelativeToolTip": "Views\\Home\\Search.cshtml",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-12-14T07:59:13.097Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "GioHang.cshtml",
-              "DocumentMoniker": "K:\\Online-Groceries-Store\\DoAnCNPM\\Views\\Home\\GioHang.cshtml",
-              "RelativeDocumentMoniker": "Views\\Home\\GioHang.cshtml",
-              "ToolTip": "K:\\Online-Groceries-Store\\DoAnCNPM\\Views\\Home\\GioHang.cshtml",
-              "RelativeToolTip": "Views\\Home\\GioHang.cshtml",
-              "ViewState": "AgIAAMUAAAAAAAAAAAAmwOoAAAAGAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-12-14T07:59:13.099Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "GioHang.cs",
-              "DocumentMoniker": "K:\\Online-Groceries-Store\\DoAnCNPM\\Models\\GioHang.cs",
-              "RelativeDocumentMoniker": "Models\\GioHang.cs",
-              "ToolTip": "K:\\Online-Groceries-Store\\DoAnCNPM\\Models\\GioHang.cs",
-              "RelativeToolTip": "Models\\GioHang.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAUwBwAAAAlAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-14T07:59:13.101Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "Error.cshtml",
-              "DocumentMoniker": "K:\\Online-Groceries-Store\\DoAnCNPM\\Views\\Shared\\Error.cshtml",
-              "RelativeDocumentMoniker": "Views\\Shared\\Error.cshtml",
-              "ToolTip": "K:\\Online-Groceries-Store\\DoAnCNPM\\Views\\Shared\\Error.cshtml",
-              "RelativeToolTip": "Views\\Shared\\Error.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-12-14T07:59:13.101Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
               "Title": "Login.cshtml",
               "DocumentMoniker": "K:\\Online-Groceries-Store\\DoAnCNPM\\Views\\Home\\Login.cshtml",
               "RelativeDocumentMoniker": "Views\\Home\\Login.cshtml",
               "ToolTip": "K:\\Online-Groceries-Store\\DoAnCNPM\\Views\\Home\\Login.cshtml",
               "RelativeToolTip": "Views\\Home\\Login.cshtml",
-              "ViewState": "AgIAAGkAAAAAAAAAAAAmwJYAAABHAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAEAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-12-14T07:59:13.101Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 3,
               "Title": "TAIKHOAN.cs",
               "DocumentMoniker": "K:\\Online-Groceries-Store\\DoAnCNPM\\Models\\TAIKHOAN.cs",
               "RelativeDocumentMoniker": "Models\\TAIKHOAN.cs",
@@ -254,12 +101,11 @@
               "RelativeToolTip": "Models\\TAIKHOAN.cs",
               "ViewState": "AgIAAAwAAAAAAAAAAAAAABgAAAAsAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-14T07:59:13.106Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-14T07:59:13.106Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 4,
               "Title": "Model1.Context.cs",
               "DocumentMoniker": "K:\\Online-Groceries-Store\\DoAnCNPM\\Models\\Model1.Context.cs",
               "RelativeDocumentMoniker": "Models\\Model1.Context.cs",
@@ -267,8 +113,7 @@
               "RelativeToolTip": "Models\\Model1.Context.cs",
               "ViewState": "AgIAAEcAAAAAAAAAAAAnwBMAAAAPAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-14T07:59:13.106Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-14T07:59:13.106Z"
             }
           ]
         },

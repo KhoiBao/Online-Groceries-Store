@@ -1,4 +1,4 @@
-﻿@model Login.Models.LoginViewModel
+﻿@model DoAnCNPM.Models.TAIKHOAN
 @{
     Layout = null;
 }
@@ -13,22 +13,122 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-        :root { --primary-green: #008848; --primary-yellow: #feaa2a; --bg-gray: #f0f0f0; }
-        body { background-color: var(--bg-gray); font-family: 'Segoe UI', Arial, sans-serif; }
-        .header-top { background-color: var(--primary-green); padding: 10px 0; color: white; }
-        .logo-text { background-color: var(--primary-yellow); color: #000; font-weight: 800; padding: 5px 15px; border-radius: 5px; text-transform: uppercase; font-size: 14px; }
-        .sub-header { background-color: #006a31; color: white; padding: 8px 0; font-size: 14px; }
-        .login-container { min-height: 70vh; display: flex; align-items: center; justify-content: center; padding: 20px 0; }
-        .login-card { background: white; padding: 30px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); width: 100%; max-width: 450px; text-align: center; }
-        .login-card h3 { font-weight: bold; font-size: 20px; margin-bottom: 5px; }
-        .login-card p { color: #666; font-size: 13px; margin-bottom: 25px; }
-        .input-group-text { background-color: white; color: #666; width: 45px; justify-content: center; }
-        .form-control:focus { box-shadow: none; border-color: var(--primary-green); }
-        .btn-login { background-color: var(--primary-green); color: white; font-weight: bold; width: 100%; padding: 10px; border: none; border-radius: 5px; margin-top: 15px; text-transform: uppercase; }
-        .btn-login:hover { background-color: #006a31; color: white; }
-        .btn-secondary-action { font-size: 14px; color: var(--primary-green); text-decoration: none; font-weight: 600; }
-        .divider { border-top: 1px solid #eee; margin: 20px 0; position: relative; }
-        .divider span { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: white; padding: 0 10px; color: #999; font-size: 12px; }
+        :root {
+            --primary-green: #008848;
+            --primary-yellow: #feaa2a;
+            --bg-gray: #f0f0f0;
+        }
+
+        body {
+            background-color: var(--bg-gray);
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
+
+        .header-top {
+            background-color: var(--primary-green);
+            padding: 10px 0;
+            color: white;
+        }
+
+        .logo-text {
+            background-color: var(--primary-yellow);
+            color: #000;
+            font-weight: 800;
+            padding: 5px 15px;
+            border-radius: 5px;
+            text-transform: uppercase;
+            font-size: 14px;
+        }
+
+        .sub-header {
+            background-color: #006a31;
+            color: white;
+            padding: 8px 0;
+            font-size: 14px;
+        }
+
+        .login-container {
+            min-height: 70vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px 0;
+        }
+
+        .login-card {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 450px;
+            text-align: center;
+        }
+
+            .login-card h3 {
+                font-weight: bold;
+                font-size: 20px;
+                margin-bottom: 5px;
+            }
+
+            .login-card p {
+                color: #666;
+                font-size: 13px;
+                margin-bottom: 25px;
+            }
+
+        .input-group-text {
+            background-color: white;
+            color: #666;
+            width: 45px;
+            justify-content: center;
+        }
+
+        .form-control:focus {
+            box-shadow: none;
+            border-color: var(--primary-green);
+        }
+
+        .btn-login {
+            background-color: var(--primary-green);
+            color: white;
+            font-weight: bold;
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            margin-top: 15px;
+            text-transform: uppercase;
+        }
+
+            .btn-login:hover {
+                background-color: #006a31;
+                color: white;
+            }
+
+        .btn-secondary-action {
+            font-size: 14px;
+            color: var(--primary-green);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .divider {
+            border-top: 1px solid #eee;
+            margin: 20px 0;
+            position: relative;
+        }
+
+            .divider span {
+                position: absolute;
+                top: -12px;
+                left: 50%;
+                transform: translateX(-50%);
+                background: white;
+                padding: 0 10px;
+                color: #999;
+                font-size: 12px;
+            }
     </style>
 </head>
 <body>
