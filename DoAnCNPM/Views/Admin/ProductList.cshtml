@@ -1,0 +1,128 @@
+﻿@model IEnumerable<DoAnCNPM.Models.SANPHAM>
+
+@{
+    ViewBag.Title = "Quản Lý Sản Phẩm";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml"; // Sử dụng layout chung
+}
+
+<style>
+    /* CSS cho bảng Quản lý Sản phẩm */
+    .admin-list-container {
+        padding: 40px;
+        max-width: 1200px;
+        margin: auto;
+    }
+
+        .admin-list-container h2 {
+            color: #008000;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+    .table-product {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 15px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+        .table-product th, .table-product td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .table-product th {
+            background-color: #f0f0f0;
+            color: #333;
+            font-weight: 600;
+        }
+
+        .table-product tr:hover {
+            background-color: #f9f9f9;
+        }
+
+    .action-link {
+        margin-right: 10px;
+        text-decoration: none;
+        color: #008000;
+    }
+
+        .action-link.delete {
+            color: #e53935;
+        }
+
+    .btn-create-new {
+        background-color: #008000;
+        color: white;
+        padding: 10px 15px;
+        border-radius: 4px;
+        text-decoration: none;
+        display: inline-block;
+        margin-bottom: 20px;
+    }
+
+        .btn-create-new:hover {
+            background-color: #006400;
+        }
+</style>
+
+<div class="admin-list-container">
+    <h2>Quản Lý Sản Phẩm</h2>
+
+    <p>
+        
+        <a href="@Url.Action("CreateProduct", "Admin")" class="btn-create-new">Thêm Sản Phẩm Mới</a>
+    </p>
+
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success" style="color: green; padding: 10px; border: 1px solid green; margin-bottom: 15px; background: #e6ffe6;">@TempData["SuccessMessage"]</div>
+    }
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger" style="color: red; padding: 10px; border: 1px solid red; margin-bottom: 15px; background: #ffeeee;">@TempData["ErrorMessage"]</div>
+    }
+
+    <table class="table-product">
+        <thead>
+            <tr>
+                <th>Mã SP</th>
+                <th>Tên Sản Phẩm</th>
+                <th>Loại SP</th>
+                <th>Giá Bán</th>
+                <th>Tồn Kho</th>
+                <th>Mô tả</th>
+                <th>Thao Tác</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.MASP)</td>
+                    <td>@Html.DisplayFor(modelItem => item.TENSP)</td>
+                    <td>@Html.DisplayFor(modelItem => item.LOAISANPHAM.TENLOAI)</td>
+                    <td>@string.Format("{0:N0}đ", item.GIABAN)</td>
+                    <td>@Html.DisplayFor(modelItem => item.SOLUONG)</td>
+                    <td>@(item.GHICHU != null && item.GHICHU.Length > 50 ? item.GHICHU.Substring(0, 50) + "..." : item.GHICHU)</td>
+                    <td>
+                        @* Tạm thời link đến #, bạn sẽ tạo Action EditProduct sau *@
+                        <a href="#" class="action-link">Sửa</a> |
+
+                        @* Link đến Action DeleteProduct đã có trong AdminController *@
+                        <a href="@Url.Action("DeleteProduct", "Admin", new { id = item.MASP })"
+                           onclick="return confirm('Bạn có chắc chắn muốn xóa sản phẩm @item.MASP không?');"
+                           class="action-link delete">Xóa</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    @if (!Model.Any())
+    {
+        <p style="text-align: center; margin-top: 30px; color: #555;">Không tìm thấy sản phẩm nào trong hệ thống.</p>
+    }
+</div>

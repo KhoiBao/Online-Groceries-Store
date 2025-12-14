@@ -1,0 +1,109 @@
+﻿@{
+    // Đặt tên trang là Admin Dashboard
+    ViewBag.Title = "Admin Dashboard";
+    // Sử dụng layout chung của ứng dụng
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+<style>
+    /* CSS cơ bản cho Dashboard */
+    .admin-container {
+        padding: 40px;
+        max-width: 1200px;
+        margin: auto;
+    }
+
+    .admin-header {
+        color: #333;
+        border-bottom: 2px solid #eee;
+        padding-bottom: 10px;
+        margin-bottom: 30px;
+    }
+
+    .admin-stats-row {
+        display: flex;
+        gap: 30px;
+        flex-wrap: wrap; /* Đảm bảo responsive */
+    }
+
+    .admin-card {
+        flex: 1; /* Chia đều không gian */
+        min-width: 250px;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        background: #fff;
+        transition: transform 0.2s;
+    }
+
+        .admin-card:hover {
+            transform: translateY(-5px);
+        }
+
+    .card-title {
+        font-size: 1.1em;
+        color: #555;
+        margin-bottom: 10px;
+    }
+
+    .card-value {
+        font-size: 2.5em;
+        font-weight: bold;
+        margin-bottom: 15px;
+    }
+
+    .card-link {
+        display: block;
+        color: #008000;
+        text-decoration: none;
+        font-weight: 600;
+        border-top: 1px solid #eee;
+        padding-top: 10px;
+    }
+
+    /* Thiết lập màu sắc cụ thể cho từng card */
+    .card-product {
+        border-left: 5px solid #008000;
+    }
+
+    .card-user {
+        border-left: 5px solid #3f51b5;
+    }
+
+    .card-product .card-value {
+        color: #008000;
+    }
+
+    .card-user .card-value {
+        color: #3f51b5;
+    }
+</style>
+
+<div class="admin-container">
+    <h2 class="admin-header">Bảng Điều Khiển Quản Trị (Admin Dashboard)</h2>
+
+    <div class="admin-stats-row">
+
+        <div class="admin-card card-product">
+            <h4 class="card-title">Tổng số Sản phẩm</h4>
+            <p class="card-value">@ViewBag.TotalProducts</p>
+            <a href="@Url.Action("ProductList", "Admin")" class="card-link">Quản lý Sản phẩm &gt;</a>
+        </div>
+
+        <div class="admin-card card-user">
+            <h4 class="card-title">Tổng số Tài khoản</h4>
+            <p class="card-value">@ViewBag.TotalUsers</p>
+            <a href="#" class="card-link">Quản lý Tài khoản &gt;</a>
+        </div>
+
+    </div>
+
+    <div style="margin-top: 50px;">
+        <h3>Các Chức Năng Chính</h3>
+        <ul>
+            <li><a href="@Url.Action("ProductList", "Admin")">Quản lý Sản phẩm</a></li>
+            <li><a href="#">Quản lý Tài khoản người dùng</a></li>
+            <li><a href="#">Quản lý Thống kê & Báo cáo</a></li>
+        </ul>
+    </div>
+</div>

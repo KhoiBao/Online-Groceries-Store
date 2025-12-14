@@ -1,0 +1,134 @@
+﻿@model DoAnCNPM.Models.SANPHAM
+
+@{
+    ViewBag.Title = "Thêm Sản Phẩm Mới";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+<style>
+    /* CSS cho Form */
+    .create-form-container {
+        padding: 40px;
+        max-width: 800px;
+        margin: 30px auto;
+        background: #fff;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+        .create-form-container h2 {
+            color: #008000;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+            margin-bottom: 25px;
+        }
+
+    .form-group label {
+        font-weight: bold;
+        display: block;
+        margin-top: 10px;
+        margin-bottom: 5px;
+    }
+
+    .form-control {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+
+    .validation-error {
+        color: #e53935;
+        font-size: 0.9em;
+        display: block;
+        margin-top: 5px;
+    }
+
+    .btn-submit {
+        background: #008000;
+        color: white;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+        margin-top: 20px;
+        transition: background 0.3s ease;
+    }
+
+        .btn-submit:hover {
+            background: #006400;
+        }
+</style>
+
+<div class="create-form-container">
+    <h2>Thêm Sản Phẩm Mới</h2>
+
+    @* Lưu ý: EncType="multipart/form-data" KHÔNG CẦN thiết nữa vì không upload file *@
+    @using (Html.BeginForm("CreateProduct", "Admin", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+
+        @Html.ValidationSummary(true, "", new { @class = "validation-error" })
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>Mã Sản Phẩm (Ví dụ: SP001)</label>
+                    @Html.TextBoxFor(model => model.MASP, new { @class = "form-control", required = "required" })
+                    @Html.ValidationMessageFor(model => model.MASP, "", new { @class = "validation-error" })
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>Tên Sản Phẩm</label>
+                    @Html.TextBoxFor(model => model.TENSP, new { @class = "form-control", required = "required" })
+                    @Html.ValidationMessageFor(model => model.TENSP, "", new { @class = "validation-error" })
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>Loại Sản Phẩm</label>
+                    @* DropdownList cho Loại Sản phẩm sử dụng ViewBag.MALOAI *@
+                    @Html.DropDownList("MALOAI", null, "--- Chọn Loại Sản Phẩm ---", new { @class = "form-control", required = "required" })
+                    @Html.ValidationMessageFor(model => model.MALOAI, "", new { @class = "validation-error" })
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>Giá Bán (VNĐ)</label>
+                    @Html.TextBoxFor(model => model.GIABAN, new { @class = "form-control", type = "number", required = "required", min = "0" })
+                    @Html.ValidationMessageFor(model => model.GIABAN, "", new { @class = "validation-error" })
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>Số Lượng Tồn Kho</label>
+                    @* Đã sửa thành SOLUONGTON để khớp với Model SANPHAM *@
+                    @Html.TextBoxFor(model => model.SOLUONG, new { @class = "form-control", type = "number", required = "required", min = "0" })
+                    @Html.ValidationMessageFor(model => model.SOLUONG, "", new { @class = "validation-error" })
+                </div>
+            </div>
+            <div class="col-md-6">
+                @* Cột này trống, có thể dùng để căn chỉnh hoặc bỏ đi *@
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Mô tả Sản Phẩm</label>
+            @* Đã sửa thành MOTA để khớp với Model SANPHAM *@
+            @Html.TextAreaFor(model => model.GHICHU, new { @class = "form-control", rows = 5 })
+            @Html.ValidationMessageFor(model => model.GHICHU, "", new { @class = "validation-error" })
+        </div>
+
+        <button type="submit" class="btn-submit">Thêm Sản Phẩm</button>
+        <a href="@Url.Action("ProductList", "Admin")" class="btn btn-default" style="margin-top: 20px;">Quay lại Danh sách</a>
+    }
+</div>
