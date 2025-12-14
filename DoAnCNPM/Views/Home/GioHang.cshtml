@@ -1,0 +1,235 @@
+﻿@using DoAnCNPM.Models
+@model List<ItemGioHang>
+
+@{
+    ViewBag.Title = "Giỏ Hàng Của Bạn";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+
+    decimal tongTien = 0;
+    if (Model != null && Model.Count > 0)
+    {
+        tongTien = Model.Sum(item => item.ThanhTien);
+    }
+}
+
+<style>
+    /* CSS TÙY CHỈNH CHO TRANG GIỎ HÀNG (GIỮ NGUYÊN) */
+    .cart-page-container {
+        padding: 40px 20px;
+        max-width: 1000px;
+        margin: 0 auto;
+    }
+
+    .cart-title {
+        color: #008000;
+        border-bottom: 3px solid #008000;
+        padding-bottom: 10px;
+        margin-bottom: 30px;
+    }
+
+    /* Bảng Giỏ Hàng */
+    .cart-table {
+        width: 100%;
+        border-collapse: collapse;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        background-color: #fff;
+    }
+
+        .cart-table th, .cart-table td {
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+            text-align: left;
+        }
+
+        .cart-table th {
+            background-color: #f7f7f7;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .cart-table tr:hover {
+            background-color: #fcfcfc;
+        }
+
+        .cart-table .product-name {
+            font-weight: 500;
+        }
+
+        .cart-table .unit-price, .cart-table .sub-total {
+            color: #e44d26;
+            font-weight: bold;
+        }
+
+    /* CSS MỚI CHO NÚT XÓA */
+    .delete-btn {
+        color: #ff0000;
+        text-decoration: none;
+        font-weight: bold;
+        border: 1px solid #ff0000;
+        padding: 5px 10px;
+        border-radius: 4px;
+        transition: background-color 0.2s, color 0.2s;
+        font-size: 0.9em;
+        display: inline-block;
+    }
+
+        .delete-btn:hover {
+            background-color: #ff0000;
+            color: white;
+        }
+
+    .clear-cart-btn {
+        text-decoration: none;
+        color: #666;
+        border: 1px solid #ccc;
+        padding: 10px 20px;
+        border-radius: 4px;
+        font-weight: bold;
+        transition: background-color 0.2s;
+    }
+
+        .clear-cart-btn:hover {
+            background-color: #eee;
+            color: #333;
+        }
+
+    /* Vùng tổng tiền và nút thanh toán */
+    .cart-summary {
+        margin-top: 30px;
+        padding: 20px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        background-color: #f9f9f9;
+        display: flex; /* Dùng flex để căn chỉnh */
+        justify-content: space-between; /* Đặt nút Xóa tất cả ở trái, Tổng tiền ở phải */
+        align-items: flex-end;
+    }
+
+    .summary-group {
+        text-align: right;
+    }
+
+    .summary-row {
+        font-size: 1.2em;
+        margin-bottom: 15px;
+    }
+
+        .summary-row .total-label {
+            font-weight: bold;
+            margin-right: 15px;
+        }
+
+    .checkout-btn {
+        padding: 15px 30px;
+        background-color: #008000;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        font-size: 1.1em;
+        cursor: pointer;
+        text-decoration: none;
+        display: inline-block;
+        transition: background-color 0.3s;
+    }
+
+        .checkout-btn:hover {
+            background-color: #006400;
+        }
+
+    .empty-cart {
+        text-align: center;
+        padding: 50px;
+        border: 1px dashed #ccc;
+        background-color: #fff;
+        font-size: 1.1em;
+        color: #666;
+    }
+</style>
+
+<div class="cart-page-container">
+    <h1 class="cart-title">GIỎ HÀNG CỦA TÔI</h1>
+
+    @if (Model == null || Model.Count == 0)
+    {
+        <div class="empty-cart">
+            @ViewBag.ThongBao
+            <p>
+                <a href="@Url.Action("Index", "Home")" style="color: #008000; text-decoration: none; font-weight: bold;">
+                    &laquo; Tiếp tục mua sắm
+                </a>
+            </p>
+        </div>
+    }
+    else
+    {
+        <table class="cart-table">
+            <thead>
+                <tr>
+                    <th>Sản phẩm</th>
+                    <th style="width: 150px;">Đơn giá</th>
+                    <th style="width: 150px;">Số lượng</th>
+                    <th style="width: 180px;">Thành tiền</th>
+                    <th style="width: 80px;"></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td class="product-name">
+                            @Html.DisplayFor(modelItem => item.TenSP)
+                        </td>
+                        <td class="unit-price">
+                            @string.Format("{0:N0}", item.DonGia) VNĐ
+                        </td>
+                        <td>
+                            @* Dùng form cập nhật số lượng (chúng ta đã chuẩn bị ở bước trước) *@
+                            @using (Html.BeginForm("CapNhatGioHang", "Home", FormMethod.Post, new { @class = "quantity-form" }))
+                            {
+                                @Html.AntiForgeryToken()
+                                <input type="hidden" name="id" value="@item.MaSP" />
+                                <input type="number"
+                                       name="soLuongMoi"
+                                       value="@item.SoLuong"
+                                       min="1"
+                                       class="quantity-input"
+                                       onchange="this.form.submit()"
+                                       style="width: 60px; text-align: center;" />
+                            }
+                        </td>
+                        <td class="sub-total">
+                            @string.Format("{0:N0}", item.ThanhTien) VNĐ
+                        </td>
+                        <td>
+                            @* 🔗 Link xóa TỪNG sản phẩm *@
+                            <a href="@Url.Action("XoaGioHang", "Home", new { id = item.MaSP })" class="delete-btn">Xóa</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        <div class="cart-summary">
+
+            <div>
+                @* 🔗 Liên kết gọi hàm XoaTatCaGioHang *@
+                <a href="@Url.Action("XoaTatCaGioHang", "Home")" class="clear-cart-btn">
+                    🗑️ XÓA TẤT CẢ
+                </a>
+
+                <a href="@Url.Action("Index", "Home")" style="color: #008000; text-decoration: none; margin-left: 20px;">
+                    &laquo; Tiếp tục mua sắm
+                </a>
+            </div>
+
+            <div class="summary-group">
+                <div class="summary-row">
+                    <span class="total-label">Tổng cộng:</span>
+                    <span class="unit-price">@string.Format("{0:N0}", tongTien) VNĐ</span>
+                </div>
+                <a href="@Url.Action("DatHang", "Home")" class="checkout-btn">TIẾN HÀNH ĐẶT HÀNG</a>
+            </div>
+        </div>
+    }
+
+</div>

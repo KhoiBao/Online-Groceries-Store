@@ -145,6 +145,7 @@
     <Compile Include="Models\CONGNO.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\GioHang.cs" />
     <Compile Include="Models\HANGTRUNGBAY.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -269,18 +270,36 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\7Up.png" />
+    <Content Include="Images\Aquafina.png" />
     <Content Include="Images\banner.png" />
     <Content Include="Images\banner2.png" />
+    <Content Include="Images\C2.png" />
+    <Content Include="Images\CaVien.png" />
     <Content Include="Images\chebiensan.png" />
+    <Content Include="Images\Chocopie.png" />
+    <Content Include="Images\Cosy.png" />
     <Content Include="Images\dacsanvungmien.png" />
+    <Content Include="Images\DeNhat.png" />
     <Content Include="Images\douong.png" />
+    <Content Include="Images\Downy.png" />
+    <Content Include="Images\FrozenFries.png" />
+    <Content Include="Images\GaoST25.png" />
+    <Content Include="Images\Halls.png" />
+    <Content Include="Images\HaoHao.png" />
+    <Content Include="Images\Haribo.png" />
     <Content Include="Images\hoaqua.png" />
     <Content Include="Images\khuyenmai1.png" />
     <Content Include="Images\khuyenmai2.png" />
     <Content Include="Images\khuyenmai3.png" />
     <Content Include="Images\khuyenmai4.png" />
     <Content Include="Images\khuyenmai5.png" />
+    <Content Include="Images\LauSan.png" />
+    <Content Include="Images\Lavie1_5L.png" />
     <Content Include="Images\logo.png" />
+    <Content Include="Images\Omo.png" />
+    <Content Include="Images\Pepsi.png" />
+    <Content Include="Images\PhoMai.png" />
     <Content Include="Images\raucu.png" />
     <Content Include="Images\sanphamkhac.png" />
     <Content Include="Images\cangu.png" />
@@ -294,10 +313,22 @@
     <Content Include="Images\oi.png" />
     <Content Include="Images\cam.png" />
     <Content Include="Images\bannerv2.png" />
+    <Content Include="Images\SnackKhoai.png" />
+    <Content Include="Images\Sting.png" />
+    <Content Include="Images\Sua180.png" />
+    <Content Include="Images\Sua1L.png" />
+    <Content Include="Images\SuaChuaAn.png" />
+    <Content Include="Images\SuaChuaUong.png" />
+    <Content Include="Images\SuaDac.png" />
+    <Content Include="Images\Sunlight.png" />
     <Content Include="Images\sầu riêng.png" />
     <Content Include="Images\buoi.png" />
     <Content Include="Images\thitca.png" />
+    <Content Include="Images\ThitHeoXay.png" />
     <Content Include="Images\thucphamkho.png" />
+    <Content Include="Images\Tomato.png" />
+    <Content Include="Images\XaLach.png" />
+    <Content Include="Images\XucXich.png" />
     <Content Include="Models\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model1.edmx</DependentUpon>
@@ -348,6 +379,9 @@
     <Content Include="Views\Home\SanPham.cshtml" />
     <Content Include="Views\Home\Details.cshtml" />
     <Content Include="Views\Home\Search.cshtml" />
+    <Content Include="Views\Home\Login.cshtml" />
+    <Content Include="Views\Home\GioHang.cshtml" />
+    <Content Include="Views\Home\SanPhamTheoLoaiView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

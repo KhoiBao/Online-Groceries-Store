@@ -58,7 +58,7 @@
             padding-top: 15px;
         }
 
-        .detail-info button {
+        .detail-info .add-to-cart-btn { /* Áp dụng CSS cho nút submit */
             background: #0a8f3c;
             color: #fff;
             border: none;
@@ -68,11 +68,25 @@
             cursor: pointer;
             transition: background 0.3s ease;
             margin-top: 20px;
+            margin-left: 20px; /* Thêm khoảng cách với input số lượng */
         }
 
-            .detail-info button:hover {
+            .detail-info .add-to-cart-btn:hover {
                 background: #087330;
             }
+
+    .quantity-input-group {
+        display: flex;
+        align-items: center;
+        margin-top: 20px;
+    }
+
+    /* Cần chỉnh sửa thêm nếu bạn muốn form nằm trên cùng một dòng với input số lượng */
+    .add-to-cart-form {
+        display: flex;
+        align-items: center;
+        margin-top: 20px;
+    }
 
         .detail-info .specs span {
             display: block;
@@ -103,7 +117,7 @@
             <span>Mã sản phẩm: <strong>@Model.MASP</strong></span>
             <span>Đơn vị tính: <strong>@Model.DVT</strong></span>
 
-        
+
             <span>Loại sản phẩm: <strong>@(Model.LOAISANPHAM?.TENLOAI ?? "N/A")</strong></span>
 
             @* Lấy Tên Nhà Cung Cấp (NHACUNGCAP) qua Navigation Property *@
@@ -113,11 +127,25 @@
             <span>Số lượng tồn kho: <strong>@Model.SOLUONG</strong></span>
             <span>Ghi chú: <strong>@Model.GHICHU</strong></span>
 
-            
+
 
         </div>
 
-        <button>Thêm @Model.TENSP vào giỏ hàng</button>
+        @using (Html.BeginForm("ThemGioHang", "Home", FormMethod.Post, new { @class = "add-to-cart-form" }))
+        {
+            @Html.AntiForgeryToken()
+
+            <input type="hidden" name="id" value="@Model.MASP" />
+
+            @*<div class="quantity-input-group">
+                <label for="quantity" style="margin-right: 10px; font-weight: 500;">Số lượng:</label>
+                <input type="number" id="quantity" name="soLuongThem" value="1" min="1" max="@Model.SOLUONG" class="quantity-field" style="width: 60px; text-align: center; padding: 5px; border: 1px solid #ccc; border-radius: 4px;" />
+            </div>*@
+
+            <button type="submit" class="add-to-cart-btn">
+                🛒 Thêm @Model.TENSP vào giỏ hàng
+            </button>
+        }
 
         <div class="description">
             <h3>Thông tin chi tiết</h3>
