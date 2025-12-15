@@ -160,10 +160,7 @@
             </div>
 
 
-            @*<div class="search">
-            <input type="text" placeholder="nhập thứ bạn muốn tìm" />
-            <button>🔍</button>
-        </div>*@
+          
             <form class="search" action="@Url.Action("Search", "Home")" method="get">
                 <input type="text"
                        name="keyword"
@@ -173,10 +170,6 @@
             </form>
 
 
-            @*<div class="header-right">
-            <div class="icon">🛒</div>
-            <div>👤 Đăng nhập</div>
-        </div>*@
         <div class="header-right">
             <div class="cart-icon-container">
                 <a href="@Url.Action("GioHang", "Home")" class="cart-link">
@@ -200,7 +193,7 @@
 
                         @if (account.MAROLE == "ADMIN")
                         {
-                            <a class="dropdown-item" href="@Url.Action("Index", "Admin")">Quản trị hệ thống</a>
+                            <a class="dropdown-item" href="@Url.Action("Admin", "Home")">Quản trị hệ thống</a>
                         }
 
                         <div class="dropdown-divider"></div>
